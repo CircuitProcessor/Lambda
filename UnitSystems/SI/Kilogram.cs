@@ -6,9 +6,9 @@ namespace UnitSystems.SI
     struct Kilogram : IUnit, IEquatable<Kilogram>
     {
         public double Value { get; set; }
-        public string Symbol()
+        public string Symbol
         {
-            return "kg";
+            get { return "kg"; }
         }
 
 

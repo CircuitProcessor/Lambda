@@ -3,12 +3,12 @@ using UnitSystems.SI;
 
 namespace UnitSystems
 {
-    struct SquareOf<T1> : IUnit where T1:IUnit
+    struct SquareOf<T1> : IUnit where T1 : IUnit
     {
         private readonly T1 _unit1;
         public double _value;
 
-        public SquareOf(T1 unit) : this(unit, unit.Value*unit.Value)
+        public SquareOf(T1 unit) : this(unit, unit.Value * unit.Value)
         {
             //unit²
         }
@@ -22,7 +22,7 @@ namespace UnitSystems
         public static T1 operator /(SquareOf<T1> square, T1 divider)
         {
             var def = default(T1);
-            def.Value = square.Value/divider.Value;
+            def.Value = square.Value / divider.Value;
             return def;
         }
 
@@ -31,7 +31,7 @@ namespace UnitSystems
             return new QuotientOf<SquareOf<T1>, Joule>(square, joule);
         }
 
-        public static ProductOf<Kilogram, SquareOf<T1>> operator *(SquareOf<T1> source, Kilogram kilogram )
+        public static ProductOf<Kilogram, SquareOf<T1>> operator *(SquareOf<T1> source, Kilogram kilogram)
         {
             return new ProductOf<Kilogram, SquareOf<T1>>(kilogram, source);
         }
@@ -40,13 +40,14 @@ namespace UnitSystems
             return new ProductOf<Kilogram, SquareOf<T1>>(kilogram, source);
         }
 
-        public double Value {
+        public double Value
+        {
             get { return _value; }
             set { _value = value; }
         }
-        public string Symbol()
+        public string Symbol
         {
-            return _unit1.Symbol() + "^2";
+            get { return _unit1.Symbol + "^2"; }
         }
 
     }

@@ -10,9 +10,9 @@ namespace UnitSystems.SI
     struct Joule : IUnit
     {
         public double Value { get; set; }
-        public string Symbol()
+        public string Symbol
         {
-            return "J";
+            get { return "J"; }
         }
 
         #region W = J/s

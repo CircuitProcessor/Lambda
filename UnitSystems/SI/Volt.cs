@@ -5,9 +5,9 @@ namespace UnitSystems.SI
     struct Volt : IUnit
     {
         public double Value { get; set; }
-        public string Symbol()
+        public string Symbol
         {
-            return "V";
+            get { return "V"; }
         }
 
 

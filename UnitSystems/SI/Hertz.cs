@@ -6,9 +6,9 @@ namespace UnitSystems.SI
     {
         public double Value { get; set; }
 
-        public string Symbol()
+        public string Symbol
         {
-            return "Hz";
+            get { return "Hz"; }
         }
 
         #region +/-

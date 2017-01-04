@@ -5,9 +5,9 @@ namespace UnitSystems.SI
     struct Ampere : IUnit
     {
         public double Value { get; set; }
-        public string Symbol()
+        public string Symbol
         {
-            return "A";
+            get { return "A"; }
         }
 
         public static Volt operator *(Ampere ampers, Ohm ohms)

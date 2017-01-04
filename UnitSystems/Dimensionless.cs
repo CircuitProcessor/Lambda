@@ -7,21 +7,21 @@ using UnitSystems.Interfaces;
 
 namespace UnitSystems
 {
-    struct Dimensionless :IUnit
-    {
-        public static implicit operator int(Dimensionless input)
-        {
-            return (int)input.Value;
-        }
-        public static implicit operator Dimensionless(int input)
-        {
-            return new Dimensionless() {Value = input};
-        }
+    //struct Dimensionless :IUnit
+    //{
+    //    public static implicit operator int(Dimensionless input)
+    //    {
+    //        return (int)input.Value;
+    //    }
+    //    public static implicit operator Dimensionless(int input)
+    //    {
+    //        return new Dimensionless() {Value = input};
+    //    }
 
-        public double Value { get; set; }
-        public string Symbol()
-        {
-            return Value.ToString();
-        }
-    }
+    //    public double Value { get; set; }
+    //    public string Symbol()
+    //    {
+    //        return Value.ToString();
+    //    }
+    //}
 }

@@ -34,10 +34,18 @@ namespace UnitSystems
             set { _value = value; }
         }
 
-        public string Symbol()
+        public string Symbol
         {
-            return String.Format("{0}·{1}", _unit1.Symbol(), _unit2.Symbol());
+            get
+            {
+                return String.Format("{0}·{1}", _unit1.Symbol, _unit2.Symbol);
+            }
         }
+
+        //public string Symbol()
+        //{
+        //    return String.Format("{0}·{1}", _unit1.Symbol, _unit2.Symbol);
+        //}
 
         public static T1 operator /(ProductOf<T1, T2> source, T2 unit)
         {
@@ -116,7 +124,7 @@ namespace UnitSystems
 
         public override string ToString()
         {
-            return String.Format("{0} {1}", Value, Symbol());
+            return String.Format("{0} {1}", Value, Symbol);
         }
     }
 
@@ -150,9 +158,17 @@ namespace UnitSystems
             set { _value = value; }
         }
 
+        string IUnit.Symbol
+        {
+            get
+            {
+                throw new NotImplementedException();
+            }
+        }
+
         public string Symbol()
         {
-            return string.Empty;
+            return String.Format("{0}·{1}·{2}", _unit1.Symbol, _unit2.Symbol, _unit3.Symbol);
         }
     }
 

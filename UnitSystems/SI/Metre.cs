@@ -5,9 +5,9 @@ namespace UnitSystems.SI
     struct Metre : IUnit
     {
         public double Value { get; set; }
-        public string Symbol()
+        public string Symbol
         {
-            return "m";
+            get { return "m"; }
         }
 
 

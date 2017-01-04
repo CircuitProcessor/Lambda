@@ -5,9 +5,9 @@ namespace UnitSystems.SI
     struct Second : IUnit
     {
         public double Value { get; set; }
-        public string Symbol()
+        public string Symbol
         {
-            return "s";
+            get { return "s"; }
         }
 
         #region F = s/Ω

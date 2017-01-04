@@ -4,7 +4,7 @@ using UnitSystems.SI;
 
 namespace UnitSystems
 {
-    internal struct QuotientOf<T1, T2> : IUnit, IQuotientable<T1, T2> 
+    internal struct QuotientOf<T1, T2> : IUnit
         where T1 : IUnit
         where T2 : IUnit
     {
@@ -58,14 +58,22 @@ namespace UnitSystems
             set { _value = value; }
         }
 
-        public string Symbol()
-        {
-            return String.Format("{0}/{1}", _unit1.Symbol(), _unit2.Symbol());
-        }
+        //public string Symbol()
+        //{
+        //    return String.Format("{0}/{1}", _unit1.Symbol, _unit2.Symbol);
+        //}
 
 
 
         public T1 Dividend { get { return _unit1; } set { /*_unit1 = value;*/ } }
         public T2 Divider { get { return _unit2; } set { /*_unit2 = value;*/ } }
+
+        public string Symbol
+        {
+            get
+            {
+                return String.Format("{0}/{1}", _unit1.Symbol, _unit2.Symbol);
+            }
+        }
     }
 }

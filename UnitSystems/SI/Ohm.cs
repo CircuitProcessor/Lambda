@@ -5,9 +5,9 @@ namespace UnitSystems.SI
     struct Ohm : IUnit
     {
         public double Value { get; set; }
-        public string Symbol()
+        public string Symbol
         {
-            return "Ω";
+            get { return "Ω"; }
         }
 
         public static QuotientOf<Ohm, Metre> operator /(Ohm ohm, Metre metre)

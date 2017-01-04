@@ -5,9 +5,9 @@ namespace UnitSystems.SI
     struct Weber : IUnit
     {
         public double Value { get; set; }
-        public string Symbol()
+        public string Symbol
         {
-            return "Wb";
+            get { return "Wb"; }
         }
 
         public static implicit operator Weber(ProductOf<Volt, Second> voltageSeconds)

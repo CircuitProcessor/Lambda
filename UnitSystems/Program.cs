@@ -16,22 +16,19 @@ namespace UnitSystems
             Ohm R = 10;
             Ampere I = 4;
 
-            Volt v1 = I * R;  // 40 V
-            Ohm r1 = V / I;   // 5 Ω
-            Ampere i1 = V / R;  // 2 A
+            // Ohm's Law
+            Volt Vz = I * R;  // 40 V
+            Ohm Rz = V / I;   // 5 Ω
+            Ampere Iz = V / R;  // 2 A
 
-
-            Kilogram kg = 1;
             Metre m = 1;
-            Second s = 1;
-            Ampere amp = 1;
             Coulomb C = 1;
             Joule J = 1;
 
             // Farad in base SI = C^2/J
-            QuotientOf<SquareOf<Coulomb>, Joule> siFarad = (C ^ 2) / J;
+            QuotientOf<SquareOf<Coulomb>, Joule> farad_SI = (C ^ 2) / J;
             // Farad times Volt = Coulomb (even if multiplied in base SI representation)
-            Coulomb coulomb = siFarad * V;
+            Coulomb coulomb = farad_SI * V;
 
             // W = (A^2)*R
             Watt watt = (I ^ 2) * R;
@@ -40,7 +37,7 @@ namespace UnitSystems
             Metre m1 = (m ^ 2) / m;
 
             // Simple unit reduction
-            Ohm Rz = (R / m) * m;
+            Ohm Rx = (R / m) * m;
 
 
             // For the series circuit with given parameters:

@@ -6,9 +6,9 @@ namespace UnitSystems.SI
     {
         public double Value { get; set; }
 
-        public string Symbol()
+        public string Symbol
         {
-            return "F";
+            get { return "F"; }
         }
 
         public static implicit operator QuotientOf<SquareOf<Coulomb>, Joule>(Farad farad)

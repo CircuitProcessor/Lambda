@@ -5,9 +5,9 @@ namespace UnitSystems.SI
     struct Tesla : IUnit
     {
         public double Value { get; set; }
-        public string Symbol()
+        public string Symbol
         {
-            return "T";
+            get { return "T"; }
         }
 
         public static Tesla operator +(Tesla tesla1, Tesla tesla2)

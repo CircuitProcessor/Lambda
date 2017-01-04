@@ -5,9 +5,9 @@ namespace UnitSystems.SI
     struct Newton : IUnit
     {
         public double Value { get; set; }
-        public string Symbol()
+        public string Symbol
         {
-            return "N";
+            get { return "N"; }
         }
 
         #region J = N∙m
