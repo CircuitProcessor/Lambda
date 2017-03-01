@@ -25,9 +25,9 @@ namespace UnitSystems.SI
             return new Weber() { Value = value };
         }
 
-        public static Tesla operator /(Weber weber, Metre metre)
+        public static Tesla operator /(Weber weber, SquareOf<Metre> metre)
         {
-            return new Tesla() { Value = weber.Value / (metre^2).Value };
+            return new Tesla() { Value = weber.Value / metre.Value };
         }
 
         public static Weber operator +(Weber weber1, Weber weber2)

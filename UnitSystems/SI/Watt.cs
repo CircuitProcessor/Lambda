@@ -2,10 +2,39 @@
 
 namespace UnitSystems.SI
 {
+    /// <summary>
+    /// Represents unit of work. 
+    /// See:<see cref="Farad"/>.
+    /// </summary>
     struct Watt : IUnit
     {
+        /// <summary>Here is an example of a bulleted list:
+        /// <list type="table">
+        /// <item>
+        /// <description>Item 1.</description>
+        /// </item>
+        /// <item>
+        /// <description>Item 2.</description>
+        /// </item>
+        /// </list>
+        /// </summary>
         public double Value { get; set; }
 
+        /// <summary>
+        /// The GetZero method.
+        /// </summary>
+        /// <example> 
+        /// This sample shows how to call the <see cref="Symbol"/> method.
+        /// <code>
+        /// class TestClass 
+        /// {
+        ///     static int Main() 
+        ///     {
+        ///         return GetZero();
+        ///     }
+        /// }
+        /// </code>
+        /// </example>
         public string Symbol
         {
             get { return "W"; }
@@ -14,7 +43,7 @@ namespace UnitSystems.SI
         #region J = W∙s
         public static Joule operator *(Watt watt, Second sec)
         {
-            return new Joule() {Value = watt.Value*sec.Value};
+            return new Joule() { Value = watt.Value * sec.Value };
         }
         #endregion
 
@@ -48,7 +77,7 @@ namespace UnitSystems.SI
         }
         public static implicit operator Watt(ProductOf<Volt, Ampere> source)
         {
-            return new Watt() {Value = source.Value};
+            return new Watt() { Value = source.Value };
         }
         #endregion
 
@@ -61,7 +90,7 @@ namespace UnitSystems.SI
         }
         public static implicit operator Watt(ProductOf<SquareOf<Ampere>, Ohm> source)
         {
-            return new Watt() {Value = source.Value};
+            return new Watt() { Value = source.Value };
         }
         #endregion
 

@@ -1,3 +1,4 @@
+using System;
 using UnitSystems.Interfaces;
 
 namespace UnitSystems.SI
@@ -28,7 +29,9 @@ namespace UnitSystems.SI
 
         public static SquareOf<Metre> operator ^(Metre source, int expo)
         {
-            return new SquareOf<Metre>(source);
+            if (expo == 2)
+                return new SquareOf<Metre>(source);
+            throw new ArgumentException("Wrong Exponent.", nameof(expo));
         }
     }
 }

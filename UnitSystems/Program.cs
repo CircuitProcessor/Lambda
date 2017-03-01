@@ -24,7 +24,7 @@ namespace UnitSystems
             Metre m = 1;
             Coulomb C = 1;
             Joule J = 1;
-
+            
             // Farad in base SI = C^2/J
             QuotientOf<SquareOf<Coulomb>, Joule> farad_SI = (C ^ 2) / J;
             // Farad times Volt = Coulomb (even if multiplied in base SI representation)
@@ -64,10 +64,19 @@ namespace UnitSystems
             Watt P1 = V1 * Is; // 36 mW
             Watt P2 = (Is ^ 2) * R2; // (6 mA)^2 * 3 kΩ = 108 mW
             Watt P3 = (V3 ^ 2) / R3; // (12 V)^2 / 2 kΩ = 72 mW
-
+            
             // 6. Check if the total power supplied equals the total power dissipated
             bool powerSuppliedEqualsDissipated = Pe == P1 + P2 + P3; // true: 216 mW == 36 mW + 108 mW + 72 mW
 
+            Console.ReadLine();
+
+            Console.OutputEncoding = Encoding.UTF8;
+
+            Weber Wb = 1;
+            Metre metre = 1;
+            Tesla T = Wb / (metre ^ 2);
+
+            Console.WriteLine("{0}·{1}·{2}");
             Console.ReadLine();
         }
 
