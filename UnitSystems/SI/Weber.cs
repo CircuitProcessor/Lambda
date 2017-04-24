@@ -2,7 +2,7 @@
 
 namespace UnitSystems.SI
 {
-    struct Weber : IUnit
+    public struct Weber : IUnit
     {
         public double Value { get; set; }
         public string Symbol

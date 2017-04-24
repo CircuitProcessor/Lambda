@@ -2,7 +2,7 @@ using UnitSystems.Interfaces;
 
 namespace UnitSystems.SI
 {
-    struct Tesla : IUnit
+    public struct Tesla : IUnit
     {
         public double Value { get; set; }
         public string Symbol

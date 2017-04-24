@@ -2,7 +2,7 @@
 
 namespace UnitSystems.SI
 {
-    struct Volt : IUnit
+    public struct Volt : IUnit
     {
         public double Value { get; set; }
         public string Symbol

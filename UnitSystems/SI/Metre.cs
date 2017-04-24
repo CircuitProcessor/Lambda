@@ -3,7 +3,7 @@ using UnitSystems.Interfaces;
 
 namespace UnitSystems.SI
 {
-    struct Metre : IUnit
+    public struct Metre : IUnit
     {
         public double Value { get; set; }
         public string Symbol

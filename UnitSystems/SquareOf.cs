@@ -3,7 +3,7 @@ using UnitSystems.SI;
 
 namespace UnitSystems
 {
-    struct SquareOf<T1> : IUnit where T1 : IUnit
+    public struct SquareOf<T1> : IUnit where T1 : IUnit
     {
         private readonly T1 _unit1;
         public double _value;

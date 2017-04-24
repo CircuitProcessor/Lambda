@@ -4,7 +4,7 @@ using UnitSystems.SI;
 
 namespace UnitSystems
 {
-    internal struct QuotientOf<T1, T2> : IUnit
+    public struct QuotientOf<T1, T2> : IUnit
         where T1 : IUnit
         where T2 : IUnit
     {
@@ -24,6 +24,10 @@ namespace UnitSystems
             _value = value;
         }
 
+        //public static QuotientOf<T1, T2> operator /(T1 divider, T2 divisor)
+        //{
+            
+        //} 
 
         public static T1 operator *(QuotientOf<Volt, T2> quotient1, QuotientOf<T1, T2> quotient2)
         {

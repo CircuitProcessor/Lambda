@@ -6,7 +6,7 @@ namespace UnitSystems.SI
     /// Represents unit of work. 
     /// See:<see cref="Farad"/>.
     /// </summary>
-    struct Watt : IUnit
+    public struct Watt : IUnit
     {
         /// <summary>Here is an example of a bulleted list:
         /// <list type="table">

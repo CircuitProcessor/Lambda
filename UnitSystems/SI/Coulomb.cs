@@ -2,7 +2,7 @@
 
 namespace UnitSystems.SI
 {
-    struct Coulomb : IUnit
+    public struct Coulomb : IUnit
     {
         public double Value { get; set; }
 

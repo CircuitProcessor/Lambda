@@ -62,6 +62,7 @@
     <Compile Include="Dimensionless.cs" />
     <Compile Include="SI\Ampere.cs" />
     <Compile Include="Interfaces\IUnit.cs" />
+    <Compile Include="SI\Base\WeberSI.cs" />
     <Compile Include="SI\Coulomb.cs" />
     <Compile Include="SI\Farad.cs" />
     <Compile Include="SI\Hertz.cs" />

@@ -7,7 +7,7 @@ using UnitSystems.SI;
 namespace UnitSystems
 {
 
-    struct ProductOf<T1, T2> : IUnit
+    public struct ProductOf<T1, T2> : IUnit
         where T1 : IUnit
         where T2 : IUnit
     {
@@ -129,7 +129,7 @@ namespace UnitSystems
     }
 
 
-    struct ProductOf<T1, T2, T3> : IUnit
+    public struct ProductOf<T1, T2, T3> : IUnit
         where T1 : IUnit
         where T2 : IUnit
         where T3 : IUnit

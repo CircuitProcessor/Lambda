@@ -7,7 +7,7 @@ using UnitSystems.Interfaces;
 
 namespace UnitSystems.SI
 {
-    struct Joule : IUnit
+    public struct Joule : IUnit
     {
         public double Value { get; set; }
         public string Symbol

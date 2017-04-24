@@ -2,7 +2,7 @@
 
 namespace UnitSystems.SI
 {
-    struct Second : IUnit
+    public struct Second : IUnit
     {
         public double Value { get; set; }
         public string Symbol

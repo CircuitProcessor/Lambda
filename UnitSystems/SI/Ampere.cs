@@ -2,7 +2,7 @@ using UnitSystems.Interfaces;
 
 namespace UnitSystems.SI
 {
-    struct Ampere : IUnit
+    public struct Ampere : IUnit
     {
         public double Value { get; set; }
         public string Symbol

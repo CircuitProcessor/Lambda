@@ -2,7 +2,7 @@
 
 namespace UnitSystems.SI
 {
-    struct Farad : IUnit
+    public struct Farad : IUnit
     {
         public double Value { get; set; }
 
