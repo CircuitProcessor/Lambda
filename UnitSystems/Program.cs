@@ -72,13 +72,18 @@ namespace UnitSystems
 
             Console.OutputEncoding = Encoding.UTF8;
 
+            Ampere amp = 1;
             Weber Wb = 1;
             Metre metre = 1;
             Tesla T = Wb / (metre ^ 2);
 
             Kilogram kg = 1;
             Second s = 1;
-            var x = (kg * (m ^ 2)) / (kg * (s ^ 2));
+            Weber weberSI = (kg * (m ^ Power.Square)) / (amp * (s ^ Power.Square));
+            //-------------------------------------------------------------------------
+            var joule_SI = (kg * (m ^ Power.Square)) / (s ^ Power.Square);
+            var weber_SI = joule_SI / amp;
+
 
             Console.WriteLine("{0}·{1}·{2}");
             Console.ReadLine();
@@ -90,7 +95,7 @@ namespace UnitSystems
     /*  √2 ² ·
      *     http://en.wikipedia.org/wiki/Category:SI_units 
            SI base units
-               Name        Symbol  Measure 
+               Name        Symbol  Measure
                metre       m       length 
                kilogram    kg      mass
                second      s       time

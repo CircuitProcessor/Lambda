@@ -1,4 +1,5 @@
-﻿using UnitSystems.Interfaces;
+﻿using System;
+using UnitSystems.Interfaces;
 
 namespace UnitSystems.SI
 {
@@ -36,6 +37,13 @@ namespace UnitSystems.SI
         public static SquareOf<Second> operator ^(Second source, int expo)
         {
             return new SquareOf<Second>(source);
+        }
+
+        public static SquareOf<Second> operator ^(Second source, Power expo)
+        {
+            if (expo == Power.Square)
+                return new SquareOf<Second>(source);
+            throw new ArgumentException("Wrong Exponent.", nameof(expo));
         }
 
     }

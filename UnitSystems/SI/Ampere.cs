@@ -1,3 +1,4 @@
+using System;
 using UnitSystems.Interfaces;
 
 namespace UnitSystems.SI
@@ -14,6 +15,12 @@ namespace UnitSystems.SI
         {
             return new Volt() { Value = ampers.Value * ohms.Value };
         }
+
+        public static Weber operator /(Joule joule, Ampere amp)
+        {
+            return new Weber();
+        }
+
         public static ProductOf<Ampere, Metre> operator *(Ampere ampers, Metre metres)
         {
             return new ProductOf<Ampere, Metre>(ampers, metres);
@@ -38,6 +45,18 @@ namespace UnitSystems.SI
         public static SquareOf<Ampere> operator ^(Ampere source, int expo)
         {
             return new SquareOf<Ampere>(source);
+        }
+
+        public static SquareOf<Ampere> operator ^(Ampere source, Power expo)
+        {
+            if (expo == Power.Square)
+                return new SquareOf<Ampere>(source);
+            throw new ArgumentException("Wrong Exponent.", nameof(expo));
+        }
+
+        public static ProductOf<Ampere, SquareOf<Second>> operator *(Ampere amp, SquareOf<Second> second)
+        {
+            return new ProductOf<Ampere, SquareOf<Second>>();
         }
     }
 }

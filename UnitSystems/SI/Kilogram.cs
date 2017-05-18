@@ -13,10 +13,14 @@ namespace UnitSystems.SI
         }
 
 
-        public static SquareSecondTimesAmpere operator *(Kilogram kilogram, SquareOf<Second> second)
+
+
+
+        public static ProductOf<Kilogram, QuotientOf<SquareOf<Metre>, SquareOf<Second>>> operator *(Kilogram kilogram, QuotientOf<SquareOf<Metre>, SquareOf<Second>> squareMetreBySquareSecond)
         {
-            return new SquareSecondTimesAmpere();
+            return new ProductOf<Kilogram, QuotientOf<SquareOf<Metre>, SquareOf<Second>>>();
         }
+
         public static ProductOf<Kilogram, Second> operator *(Kilogram kilogram, Second second)
         {
             return new ProductOf<Kilogram, Second>(kilogram, second);
@@ -32,10 +36,11 @@ namespace UnitSystems.SI
         //    return new ProductOf<Kilogram, SquareOf<Metre>>(kilogram, squareMetre);
         //}
 
-        public static KilogramTimesSquareMetre operator *(Kilogram kilogram, SquareOf<Metre> squareMetre)
+        public static ProductOfKilogramSquareMetre operator *(Kilogram kilogram, SquareOf<Metre> squareMetre)
         {
             return new ProductOf<Kilogram, SquareOf<Metre>>(kilogram, squareMetre);
         }
+
 
         #region +/-
         public static Kilogram operator +(Kilogram kg1, Kilogram kg2)

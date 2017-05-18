@@ -1,8 +1,11 @@
 using System;
 using System.Collections;
 using System.ComponentModel;
+using System.Runtime.InteropServices;
+using System.Security.Cryptography.X509Certificates;
 using UnitSystems.Interfaces;
 using UnitSystems.SI;
+using UnitSystems.SI.Base;
 
 namespace UnitSystems
 {
@@ -54,6 +57,7 @@ namespace UnitSystems
             return result;
         }
 
+
         public static QuotientOf<ProductOf<T1, T2>, Second> operator /(ProductOf<T1, T2> source, Second second)
         {
             var q = new QuotientOf<ProductOf<T1, T2>, Second>(new ProductOf<T1, T2>(default(T1), default(T2)), second,
@@ -76,12 +80,12 @@ namespace UnitSystems
             return q;
         }
 
-        public static QuotientOf<ProductOf<T1, T2>, Ampere> operator /(ProductOf<T1, T2> source, Ampere ampere)
-        {
-            var q = new QuotientOf<ProductOf<T1, T2>, Ampere>(new ProductOf<T1, T2>(default(T1), default(T2)), ampere,
-                source.Value / ampere.Value);
-            return q;
-        }
+        //public static QuotientOf<ProductOf<T1, T2>, Ampere> operator /(ProductOf<T1, T2> source, Ampere ampere)
+        //{
+        //    var q = new QuotientOf<ProductOf<T1, T2>, Ampere>(new ProductOf<T1, T2>(default(T1), default(T2)), ampere,
+        //        source.Value / ampere.Value);
+        //    return q;
+        //}
 
 
         public static ProductOf<T1, T2, Second> operator *(ProductOf<T1, T2> source, Second second)
@@ -128,6 +132,54 @@ namespace UnitSystems
         }
     }
 
+
+    public struct ProductOfKilogramSquareMetre : IUnit, IProductOf<Kilogram, SquareOf<Metre>>
+    {
+        public double Value
+        {
+            get{throw new NotImplementedException();}
+            set{ throw new NotImplementedException();}
+        }
+
+        public string Symbol
+        {
+            get{throw new NotImplementedException();}
+        }
+
+
+        public static ProductOf<Kilogram, QuotientOf<SquareOf<Metre>, SquareOf<Second>>> operator /(ProductOfKilogramSquareMetre source, SquareOf<Second> squareSecond)
+        {
+            return new ProductOf<Kilogram, QuotientOf<SquareOf<Metre>, SquareOf<Second>>>();
+        }
+
+        public static implicit operator ProductOf<Kilogram, SquareOf<Metre>> (ProductOfKilogramSquareMetre from)
+        {
+            return new ProductOf<Kilogram, SquareOf<Metre>>();
+        }
+        public static implicit operator ProductOfKilogramSquareMetre(ProductOf<Kilogram, SquareOf<Metre>> from)
+        {
+            return new ProductOfKilogramSquareMetre();
+        }
+
+        //public static Weber operator /(ProductOfKilogramSquareMetre divisor, SquareSecondTimesAmpere divider)
+        //{
+        //    return new Weber() { Value = divisor.Value / divider.Value };
+        //}
+
+        public static Weber operator /(ProductOfKilogramSquareMetre divisor, ProductOf<Ampere, SquareOf<Second>> divider)
+        {
+            return new Weber() { Value = divisor.Value / divider.Value };
+        }
+    }
+
+    public interface IProductOf<T1, T2> where T1:IUnit
+                                        where T2:IUnit
+    {
+        //T1 value1 { get; set; }
+        //T2 value2 { get; set; }
+
+        //ProductOf<T1,T2> SI { get; } 
+    }
 
     public struct ProductOf<T1, T2, T3> : IUnit
         where T1 : IUnit

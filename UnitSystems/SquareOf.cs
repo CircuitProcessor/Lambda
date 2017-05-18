@@ -31,6 +31,8 @@ namespace UnitSystems
             return new QuotientOf<SquareOf<T1>, Joule>(square, joule);
         }
 
+        
+
         public static ProductOf<Kilogram, SquareOf<T1>> operator *(SquareOf<T1> source, Kilogram kilogram)
         {
             return new ProductOf<Kilogram, SquareOf<T1>>(kilogram, source);

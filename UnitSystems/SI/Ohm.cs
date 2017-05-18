@@ -1,4 +1,5 @@
-﻿using UnitSystems.Interfaces;
+﻿using System;
+using UnitSystems.Interfaces;
 
 namespace UnitSystems.SI
 {
@@ -7,7 +8,11 @@ namespace UnitSystems.SI
         public double Value { get; set; }
         public string Symbol
         {
-            get { return "Ω"; }
+            get
+            {
+                return "Ω";
+                return Char.ToString((char)0x2126);
+            }
         }
 
         public static QuotientOf<Ohm, Metre> operator /(Ohm ohm, Metre metre)

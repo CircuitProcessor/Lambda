@@ -59,7 +59,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Dimensionless.cs" />
     <Compile Include="SI\Ampere.cs" />
     <Compile Include="Interfaces\IUnit.cs" />
     <Compile Include="SI\Base\WeberSI.cs" />
