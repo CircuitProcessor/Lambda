@@ -59,22 +59,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="SI\Ampere.cs" />
+    <Compile Include="SI\Complex\ProductOfKilogramAndSquareMetre.cs" />
+    <Compile Include="SI\Base\Ampere.cs" />
     <Compile Include="Interfaces\IUnit.cs" />
-    <Compile Include="SI\Base\WeberSI.cs" />
     <Compile Include="SI\Coulomb.cs" />
     <Compile Include="SI\Farad.cs" />
     <Compile Include="SI\Hertz.cs" />
     <Compile Include="SI\Joule.cs" />
-    <Compile Include="SI\Kilogram.cs" />
-    <Compile Include="SI\Metre.cs" />
+    <Compile Include="SI\Base\Kilogram.cs" />
+    <Compile Include="SI\Base\Metre.cs" />
     <Compile Include="SI\Newton.cs" />
     <Compile Include="SI\Ohm.cs" />
     <Compile Include="ProductOf.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QuotientOf.cs" />
-    <Compile Include="SI\Second.cs" />
+    <Compile Include="SI\Base\Second.cs" />
     <Compile Include="SI\Watt.cs" />
     <Compile Include="SquareOf.cs" />
     <Compile Include="SI\Tesla.cs" />

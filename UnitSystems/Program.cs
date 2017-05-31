@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnitSystems.Interfaces;
 using UnitSystems.SI;
+using UnitSystems.SI.Base;
 
 namespace UnitSystems
 {
@@ -68,9 +69,7 @@ namespace UnitSystems
             // 6. Check if the total power supplied equals the total power dissipated
             bool powerSuppliedEqualsDissipated = Pe == P1 + P2 + P3; // true: 216 mW == 36 mW + 108 mW + 72 mW
 
-            Console.ReadLine();
-
-            Console.OutputEncoding = Encoding.UTF8;
+            
 
             Ampere amp = 1;
             Weber Wb = 1;
@@ -79,12 +78,13 @@ namespace UnitSystems
 
             Kilogram kg = 1;
             Second s = 1;
-            Weber weberSI = (kg * (m ^ Power.Square)) / (amp * (s ^ Power.Square));
+            Weber weberSI = (kg * (m ^ Power.Square)) / (amp * (s ^ Power.Square)); // it is also possible to get SI unit from complex representation.
             //-------------------------------------------------------------------------
-            var joule_SI = (kg * (m ^ Power.Square)) / (s ^ Power.Square);
-            var weber_SI = joule_SI / amp;
+            var joule_baseSI = (kg * (m ^ Power.Square)) / (s ^ Power.Square);
+            var weber_SI = joule_baseSI / amp; // Wb = J/A - that rule is used despite Joule base SI form.
 
 
+            Console.OutputEncoding = Encoding.UTF8;
             Console.WriteLine("{0}·{1}·{2}");
             Console.ReadLine();
         }

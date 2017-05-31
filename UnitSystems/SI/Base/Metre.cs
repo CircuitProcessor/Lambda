@@ -1,7 +1,7 @@
 using System;
 using UnitSystems.Interfaces;
 
-namespace UnitSystems.SI
+namespace UnitSystems.SI.Base
 {
     public struct Metre : IUnit
     {
@@ -46,18 +46,12 @@ namespace UnitSystems.SI
 
     public sealed class Power
     {
-        private enum Level
+        private Power()
         {
-            Square,
-            Cubic
-        }
-        private Power(Level level)
-        {
-            _level = level;
         }
 
-        private readonly Level _level;
-        public static readonly Power Square = new Power(Level.Square);
+
+        public static readonly Power Square = new Power();
         //public static readonly Power Cubic = new Power(Level.Cubic);
     }
 

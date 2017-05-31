@@ -1,8 +1,8 @@
 using System;
 using UnitSystems.Interfaces;
-using UnitSystems.SI.Base;
+using UnitSystems.SI.Complex;
 
-namespace UnitSystems.SI
+namespace UnitSystems.SI.Base
 {
     public struct Kilogram : IUnit, IEquatable<Kilogram>
     {
@@ -36,7 +36,7 @@ namespace UnitSystems.SI
         //    return new ProductOf<Kilogram, SquareOf<Metre>>(kilogram, squareMetre);
         //}
 
-        public static ProductOfKilogramSquareMetre operator *(Kilogram kilogram, SquareOf<Metre> squareMetre)
+        public static ProductOfKilogramAndSquareMetre operator *(Kilogram kilogram, SquareOf<Metre> squareMetre)
         {
             return new ProductOf<Kilogram, SquareOf<Metre>>(kilogram, squareMetre);
         }

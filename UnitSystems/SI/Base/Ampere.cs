@@ -1,7 +1,7 @@
 using System;
 using UnitSystems.Interfaces;
 
-namespace UnitSystems.SI
+namespace UnitSystems.SI.Base
 {
     public struct Ampere : IUnit
     {

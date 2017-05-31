@@ -1,8 +1,4 @@
 using System;
-using System.Collections;
-using System.ComponentModel;
-using System.Runtime.InteropServices;
-using System.Security.Cryptography.X509Certificates;
 using UnitSystems.Interfaces;
 using UnitSystems.SI;
 using UnitSystems.SI.Base;
@@ -132,45 +128,6 @@ namespace UnitSystems
         }
     }
 
-
-    public struct ProductOfKilogramSquareMetre : IUnit, IProductOf<Kilogram, SquareOf<Metre>>
-    {
-        public double Value
-        {
-            get{throw new NotImplementedException();}
-            set{ throw new NotImplementedException();}
-        }
-
-        public string Symbol
-        {
-            get{throw new NotImplementedException();}
-        }
-
-
-        public static ProductOf<Kilogram, QuotientOf<SquareOf<Metre>, SquareOf<Second>>> operator /(ProductOfKilogramSquareMetre source, SquareOf<Second> squareSecond)
-        {
-            return new ProductOf<Kilogram, QuotientOf<SquareOf<Metre>, SquareOf<Second>>>();
-        }
-
-        public static implicit operator ProductOf<Kilogram, SquareOf<Metre>> (ProductOfKilogramSquareMetre from)
-        {
-            return new ProductOf<Kilogram, SquareOf<Metre>>();
-        }
-        public static implicit operator ProductOfKilogramSquareMetre(ProductOf<Kilogram, SquareOf<Metre>> from)
-        {
-            return new ProductOfKilogramSquareMetre();
-        }
-
-        //public static Weber operator /(ProductOfKilogramSquareMetre divisor, SquareSecondTimesAmpere divider)
-        //{
-        //    return new Weber() { Value = divisor.Value / divider.Value };
-        //}
-
-        public static Weber operator /(ProductOfKilogramSquareMetre divisor, ProductOf<Ampere, SquareOf<Second>> divider)
-        {
-            return new Weber() { Value = divisor.Value / divider.Value };
-        }
-    }
 
     public interface IProductOf<T1, T2> where T1:IUnit
                                         where T2:IUnit
