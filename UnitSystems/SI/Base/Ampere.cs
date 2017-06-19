@@ -5,7 +5,18 @@ namespace UnitSystems.SI.Base
 {
     public struct Ampere : IUnit
     {
-        public double Value { get; set; }
+        public readonly double value;
+
+        public Ampere(double value)
+        {
+            this.value = value;
+        }
+
+        public double Value
+        {
+            get { return value; }
+        }
+
         public string Symbol
         {
             get { return "A"; }
@@ -29,17 +40,17 @@ namespace UnitSystems.SI.Base
         #region +/-
         public static Ampere operator +(Ampere ampere1, Ampere ampere2)
         {
-            return new Ampere() { Value = ampere1.Value + ampere2.Value };
+            return new Ampere(ampere1.Value + ampere2.Value);
         }
         public static Ampere operator -(Ampere ampere1, Ampere ampere2)
         {
-            return new Ampere() { Value = ampere1.Value - ampere2.Value };
+            return new Ampere(ampere1.Value - ampere2.Value);
         }
         #endregion
 
         public static implicit operator Ampere(double value)
         {
-            return new Ampere() { Value = value };
+            return new Ampere(value);
         }
 
         public static SquareOf<Ampere> operator ^(Ampere source, int expo)

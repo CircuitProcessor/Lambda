@@ -48,12 +48,12 @@ namespace UnitSystems
         //    return String.Format("{0}·{1}", _unit1.Symbol, _unit2.Symbol);
         //}
 
-        public static T1 operator /(ProductOf<T1, T2> source, T2 unit)
-        {
-            var result = default(T1);
-            result.Value = source.Value / unit.Value;
-            return result;
-        }
+        //public static T1 operator /(ProductOf<T1, T2> source, T2 unit)
+        //{
+        //    var result = default(T1);
+        //    result.Value = source.Value / unit.Value;
+        //    return result;
+        //}
 
         public static QuotientOf<ProductOf<T1, T2>, Second> operator /(ProductOf<T1, T2> source, Second second)
         {
@@ -109,12 +109,12 @@ namespace UnitSystems
             return q;
         }
 
-        public static T2 operator /(ProductOf<T1, T2> source, T1 unit)
-        {
-            var result = default(T2);
-            result.Value = source.Value / unit.Value;
-            return result;
-        }
+        //public static T2 operator /(ProductOf<T1, T2> source, T1 unit)
+        //{
+        //    var result = default(T2);
+        //    result.Value = source.Value / unit.Value;
+        //    return result;
+        //}
 
 
         public static ProductOf<T1, T2> operator /(int value, ProductOf<T1, T2> source)

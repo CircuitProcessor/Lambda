@@ -27,11 +27,16 @@ namespace UnitSystems.SI.Base
             return new Metre() { Value = value };
         }
 
-        public static SquareOf<Metre> operator ^(Metre source, int expo)
+        //public static SquareOf<Metre> operator ^(Metre source, int expo)
+        //{
+        //    if (expo == 2)
+        //        return new SquareOf<Metre>(source);
+        //    throw new ArgumentException("Wrong Exponent.", nameof(expo));
+        //}
+
+        public static Metre operator /(SquareOf<Metre> divisor, Metre divider)
         {
-            if (expo == 2)
-                return new SquareOf<Metre>(source);
-            throw new ArgumentException("Wrong Exponent.", nameof(expo));
+            return new Metre();
         }
 
         public static SquareOf<Metre> operator ^(Metre source, Power expo)

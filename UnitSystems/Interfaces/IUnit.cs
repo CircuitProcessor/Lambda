@@ -2,7 +2,7 @@ namespace UnitSystems.Interfaces
 {
     public interface IUnit
     {
-        double Value { get; set; }
+        double Value { get; }
         string Symbol { get; }
     }
 

@@ -46,7 +46,7 @@ namespace UnitSystems.SI
         #region A = V/Ω
         public static Ampere operator /(Volt volt, Ohm ohm)
         {
-            return new Ampere() { Value = volt.Value / ohm.Value };
+            return new Ampere(volt.Value / ohm.Value);
         }
         #endregion
 

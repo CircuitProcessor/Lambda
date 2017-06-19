@@ -20,12 +20,12 @@ namespace UnitSystems
             _value = value;
         }
 
-        public static T1 operator /(SquareOf<T1> square, T1 divider)
-        {
-            var def = default(T1);
-            def.Value = square.Value / divider.Value;
-            return def;
-        }
+        //public static T1 operator /(SquareOf<T1> square, T1 divider)
+        //{
+        //    var def = default(T1);
+        //    def.Value = square.Value / divider.Value;
+        //    return def;
+        //}
 
         public static QuotientOf<SquareOf<T1>, Joule> operator /(SquareOf<T1> square, Joule joule)
         {

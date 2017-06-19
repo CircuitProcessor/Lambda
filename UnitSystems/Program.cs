@@ -35,10 +35,7 @@ namespace UnitSystems
             Watt watt = (I ^ 2) * R;
 
             // Square meter divided by meter is.. meter!
-            Metre m1 = (m ^ 2) / m;
-
-            // Simple unit reduction
-            Ohm Rx = (R / m) * m;
+            Metre m1 = (m ^ Power.Square) / m;
 
 
             // For the series circuit with given parameters:
@@ -74,7 +71,7 @@ namespace UnitSystems
             Ampere amp = 1;
             Weber Wb = 1;
             Metre metre = 1;
-            Tesla T = Wb / (metre ^ 2);
+            Tesla T = Wb / (metre ^ Power.Square);
 
             Kilogram kg = 1;
             Second s = 1;

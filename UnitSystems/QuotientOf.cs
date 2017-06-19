@@ -35,21 +35,21 @@ namespace UnitSystems
             return default(T1);
         }
 
-        public static T1 operator *(T2 multiplier, QuotientOf<T1, T2> quotient2)
-        {
-            var result = (multiplier.Value*quotient2.Dividend.Value)/quotient2.Divider.Value;
-            var resultUnit = default(T1);
-            resultUnit.Value = result;
-            return resultUnit;
-        }
+        //public static T1 operator *(T2 multiplier, QuotientOf<T1, T2> quotient2)
+        //{
+        //    var result = (multiplier.Value*quotient2.Dividend.Value)/quotient2.Divider.Value;
+        //    var resultUnit = default(T1);
+        //    resultUnit.Value = result;
+        //    return resultUnit;
+        //}
 
-        public static T1 operator *(QuotientOf<T1, T2> quotient2, T2 multiplier)
-        {
-            var result = (multiplier.Value * quotient2.Dividend.Value) / quotient2.Divider.Value;
-            var resultUnit = default(T1);
-            resultUnit.Value = result;
-            return resultUnit;
-        }
+        //public static T1 operator *(QuotientOf<T1, T2> quotient2, T2 multiplier)
+        //{
+        //    var result = (multiplier.Value * quotient2.Dividend.Value) / quotient2.Divider.Value;
+        //    var resultUnit = default(T1);
+        //    resultUnit.Value = result;
+        //    return resultUnit;
+        //}
 
         public static ProductOf<T1,T2> operator *(QuotientOf<T1, T2> quotient, SquareOf<T2> square)
         {
