@@ -5,7 +5,7 @@ using UnitSystems.SI.Base;
 
 namespace UnitSystems.SI.Complex
 {
-    public struct ProductOfKilogramAndSquareMetre : IUnit, IProductOf<Kilogram, SquareOf<Metre>>
+    public struct ProductOfKilogramAndSquareMetre : IUnit
     {
         public double Value
         {
