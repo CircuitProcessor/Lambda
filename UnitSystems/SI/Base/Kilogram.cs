@@ -6,58 +6,48 @@ namespace UnitSystems.SI.Base
 {
     public struct Kilogram : IUnit, IEquatable<Kilogram>
     {
-        public double Value { get; set; }
-        public string Symbol
+        public readonly double Value;
+
+        public Kilogram(double value)
         {
-            get { return "kg"; }
+            this.Value = value;
         }
 
-
-
-
-
-        public static ProductOf<Kilogram, QuotientOf<SquareOf<Metre>, SquareOf<Second>>> operator *(Kilogram kilogram, QuotientOf<SquareOf<Metre>, SquareOf<Second>> squareMetreBySquareSecond)
-        {
-            return new ProductOf<Kilogram, QuotientOf<SquareOf<Metre>, SquareOf<Second>>>();
-        }
-
-        public static ProductOf<Kilogram, Second> operator *(Kilogram kilogram, Second second)
-        {
-            return new ProductOf<Kilogram, Second>(kilogram, second);
-        }
-
-        public static ProductOf<Kilogram, Metre> operator *(Kilogram kilogram, Metre metre)
-        {
-            return new ProductOf<Kilogram, Metre>(kilogram, metre);
-        }
-
-        //public static ProductOf<Kilogram, SquareOf<Metre>> operator *(Kilogram kilogram, SquareOf<Metre> squareMetre)
-        //{
-        //    return new ProductOf<Kilogram, SquareOf<Metre>>(kilogram, squareMetre);
-        //}
-
+        #region Complex
         public static ProductOfKilogramAndSquareMetre operator *(Kilogram kilogram, SquareOf<Metre> squareMetre)
         {
             return new ProductOf<Kilogram, SquareOf<Metre>>(kilogram, squareMetre);
         }
-
+        #endregion
 
         #region +/-
+
         public static Kilogram operator +(Kilogram kg1, Kilogram kg2)
         {
             return new Kilogram() { Value = kg1.Value + kg2.Value };
         }
+
         public static Kilogram operator -(Kilogram kg1, Kilogram kg2)
         {
             return new Kilogram() { Value = kg1.Value - kg2.Value };
         }
+
         #endregion
 
         public static implicit operator Kilogram(double value)
         {
-            return new Kilogram() { Value = value };
+            return new Kilogram(value);
         }
 
+        public double GetValue()
+        {
+            return this.Value;
+        }
+
+        public string Symbol
+        {
+            get { return "kg"; }
+        }
 
         public bool Equals(Kilogram other)
         {

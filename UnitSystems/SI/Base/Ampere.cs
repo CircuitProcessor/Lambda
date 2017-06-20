@@ -5,16 +5,16 @@ namespace UnitSystems.SI.Base
 {
     public struct Ampere : IUnit
     {
-        public readonly double value;
+        public readonly double Value;
 
         public Ampere(double value)
         {
-            this.value = value;
+            this.Value = value;
         }
 
-        public double Value
+        public double GetValue()
         {
-            get { return value; }
+            return this.Value;
         }
 
         public string Symbol
