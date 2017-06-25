@@ -3,7 +3,7 @@ using UnitSystems.Interfaces;
 
 namespace UnitSystems.SI.Base
 {
-    public struct Ampere : IUnit
+    public struct Ampere : IUnit, IEquatable<Ampere>
     {
         public readonly double Value;
 
@@ -12,30 +12,19 @@ namespace UnitSystems.SI.Base
             this.Value = value;
         }
 
-        public double GetValue()
-        {
-            return this.Value;
-        }
-
-        public string Symbol
-        {
-            get { return "A"; }
-        }
-
+        #region V = A·R
         public static Volt operator *(Ampere ampers, Ohm ohms)
         {
             return new Volt() { Value = ampers.Value * ohms.Value };
         }
+        #endregion
 
+        #region Wb = J/A
         public static Weber operator /(Joule joule, Ampere amp)
         {
             return new Weber();
         }
-
-        public static ProductOf<Ampere, Metre> operator *(Ampere ampers, Metre metres)
-        {
-            return new ProductOf<Ampere, Metre>(ampers, metres);
-        }
+        #endregion
 
         #region +/-
         public static Ampere operator +(Ampere ampere1, Ampere ampere2)
@@ -48,26 +37,37 @@ namespace UnitSystems.SI.Base
         }
         #endregion
 
-        public static implicit operator Ampere(double value)
+        #region Complex
+        public static ProductOf<Ampere, SquareOf<Second>> operator *(Ampere amp, SquareOf<Second> second)
         {
-            return new Ampere(value);
+            return new ProductOf<Ampere, SquareOf<Second>>();
         }
-
-        public static SquareOf<Ampere> operator ^(Ampere source, int expo)
-        {
-            return new SquareOf<Ampere>(source);
-        }
-
         public static SquareOf<Ampere> operator ^(Ampere source, Power expo)
         {
             if (expo == Power.Square)
                 return new SquareOf<Ampere>(source);
             throw new ArgumentException("Wrong Exponent.", nameof(expo));
         }
+        #endregion
 
-        public static ProductOf<Ampere, SquareOf<Second>> operator *(Ampere amp, SquareOf<Second> second)
+        public static implicit operator Ampere(double value)
         {
-            return new ProductOf<Ampere, SquareOf<Second>>();
+            return new Ampere(value);
+        }
+
+        public double GetValue()
+        {
+            return this.Value;
+        }
+
+        public string Symbol
+        {
+            get { return "A"; }
+        }
+
+        public bool Equals(Ampere other)
+        {
+            return this.Value.Equals(other.Value);
         }
     }
 }

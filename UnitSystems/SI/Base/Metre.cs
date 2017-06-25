@@ -5,34 +5,35 @@ namespace UnitSystems.SI.Base
 {
     public struct Metre : IUnit
     {
-        public double Value { get; set; }
+        public readonly double Value;
+        public double GetValue()
+        {
+            return this.Value;
+        }
         public string Symbol
         {
             get { return "m"; }
         }
 
+        public Metre(double value)
+        {
+            this.Value = value;
+        }
 
         public static Metre operator +(Metre metre1, Metre metre2)
         {
-            return new Metre() { Value = metre1.Value + metre2.Value };
+            return new Metre(metre1.Value + metre2.Value);
         }
         public static Metre operator -(Metre metre1, Metre metre2)
         {
-            return new Metre() { Value = metre1.Value - metre2.Value };
+            return new Metre(metre1.Value - metre2.Value);
         }
 
 
         public static implicit operator Metre(double value)
         {
-            return new Metre() { Value = value };
+            return new Metre(value);
         }
-
-        //public static SquareOf<Metre> operator ^(Metre source, int expo)
-        //{
-        //    if (expo == 2)
-        //        return new SquareOf<Metre>(source);
-        //    throw new ArgumentException("Wrong Exponent.", nameof(expo));
-        //}
 
         public static Metre operator /(SquareOf<Metre> divisor, Metre divider)
         {
