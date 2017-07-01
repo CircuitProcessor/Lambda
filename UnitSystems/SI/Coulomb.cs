@@ -1,10 +1,22 @@
-﻿using UnitSystems.Interfaces;
+﻿using System;
+using UnitSystems.Interfaces;
 
 namespace UnitSystems.SI
 {
-    public struct Coulomb : IUnit
+    public struct Coulomb : IUnit, IEquatable<Coulomb>
     {
-        public double Value { get; set; }
+        public readonly double Value;
+        public double GetValue() { return Value; }
+
+        public bool Equals(Coulomb other)
+        {
+            return this.Value.Equals(other.Value);
+        }
+
+        public Coulomb(double value)
+        {
+            this.Value = value;
+        }
 
         public string Symbol
         {
@@ -41,7 +53,7 @@ namespace UnitSystems.SI
 
         public static implicit operator Coulomb(double value)
         {
-            return new Coulomb() { Value = value };
+            return new Coulomb(value);
         }
 
         public static SquareOf<Coulomb> operator ^(Coulomb source, int expo)

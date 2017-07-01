@@ -1,10 +1,16 @@
-﻿using UnitSystems.Interfaces;
+﻿using System;
+using UnitSystems.Interfaces;
 
 namespace UnitSystems.SI
 {
-    struct Hertz : IUnit
+    public struct Hertz : IUnit, IEquatable<Hertz>
     {
-        public double Value { get; set; }
+        public readonly double Value;
+
+        public Hertz(double value)
+        {
+            this.Value = value;
+        }
 
         public string Symbol
         {
@@ -27,9 +33,17 @@ namespace UnitSystems.SI
 
         public static implicit operator Hertz(double value)
         {
-            return new Hertz() {Value = value};
+            return new Hertz(value);
         }
 
-         
+        public double GetValue()
+        {
+            return Value;
+        }
+
+        public bool Equals(Hertz other)
+        {
+            return this.Value.Equals(other.Value);
+        }
     }
 }

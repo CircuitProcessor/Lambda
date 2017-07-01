@@ -1,14 +1,25 @@
-﻿using UnitSystems.Interfaces;
+﻿using System;
+using UnitSystems.Interfaces;
 using UnitSystems.SI.Base;
 
 namespace UnitSystems.SI
 {
-    struct Newton : IUnit
+    public struct Newton : IUnit, IEquatable<Newton>
     {
-        public double Value { get; set; }
+        public readonly double Value;
+
+        public Newton(double value)
+        {
+            this.Value = value;
+        }
         public string Symbol
         {
             get { return "N"; }
+        }
+
+        public double GetValue()
+        {
+            return Value;
         }
 
         #region J = N∙m
@@ -33,7 +44,7 @@ namespace UnitSystems.SI
 
         public static implicit operator Newton(ProductOf<Kilogram, QuotientOf<Metre, SquareOf<Second>>> input)
         {
-            return new Newton() { Value = input.Value };
+            return new Newton(input.Value);
         }
         #endregion
 
@@ -50,8 +61,12 @@ namespace UnitSystems.SI
 
         public static implicit operator Newton(double value)
         {
-            return new Newton() { Value = value };
+            return new Newton(value);
         }
 
+        public bool Equals(Newton other)
+        {
+            return this.Value.Equals(other.Value);
+        }
     }
 }

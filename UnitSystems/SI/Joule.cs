@@ -9,12 +9,22 @@ using UnitSystems.SI.Base;
 
 namespace UnitSystems.SI
 {
-    public struct Joule : IUnit
+    public struct Joule : IUnit, IEquatable<Hertz>
     {
-        public double Value { get; set; }
+        public readonly double Value;
+
+        public Joule(double value)
+        {
+            this.Value = value;
+        }
         public string Symbol
         {
             get { return "J"; }
+        }
+
+        public double GetValue()
+        {
+            return Value;
         }
 
         public static implicit operator ProductOf<Kilogram, QuotientOf<SquareOf<Metre>, SquareOf<Second>>>(Joule source)
@@ -53,7 +63,12 @@ namespace UnitSystems.SI
 
         public static implicit operator Joule(double value)
         {
-            return new Joule() { Value = value };
+            return new Joule(value);
+        }
+
+        public bool Equals(Hertz other)
+        {
+            return this.Value.Equals(other.Value);
         }
     }
 }

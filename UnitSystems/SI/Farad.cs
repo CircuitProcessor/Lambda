@@ -1,10 +1,17 @@
-﻿using UnitSystems.Interfaces;
+﻿using System;
+using UnitSystems.Interfaces;
 
 namespace UnitSystems.SI
 {
-    public struct Farad : IUnit
+    public struct Farad : IUnit, IEquatable<Farad>
     {
-        public double Value { get; set; }
+        public readonly double Value;
+        public double GetValue() {return Value; }
+
+        public Farad(double value)
+        {
+            this.Value = value;
+        }
 
         public string Symbol
         {
@@ -17,13 +24,13 @@ namespace UnitSystems.SI
         }
         public static implicit operator Farad(QuotientOf<SquareOf<Coulomb>, Joule> input)
         {
-            return new Farad() { Value = input.Value };
+            return new Farad(input.Value);
         }
 
 
         public static Coulomb operator *(Farad farad, Volt volt)
         {
-            return new Coulomb() { Value = farad.Value * volt.Value };
+            return new Coulomb(farad.Value * volt.Value);
         }
 
         #region +/-
@@ -42,9 +49,12 @@ namespace UnitSystems.SI
 
         public static implicit operator Farad(double value)
         {
-            return new Farad() { Value = value };
+            return new Farad(value);
         }
 
-
+        public bool Equals(Farad other)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

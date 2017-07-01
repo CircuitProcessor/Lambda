@@ -4,9 +4,14 @@ using UnitSystems.SI.Base;
 
 namespace UnitSystems.SI
 {
-    public struct Ohm : IUnit
+    public struct Ohm : IUnit, IEquatable<Ohm>
     {
-        public double Value { get; set; }
+        public readonly double Value;
+
+        public Ohm(double value)
+        {
+            this.Value = value;
+        }
         public string Symbol
         {
             get
@@ -34,17 +39,27 @@ namespace UnitSystems.SI
         #region +/-
         public static Ohm operator +(Ohm ohm1, Ohm ohm2)
         {
-            return new Ohm() { Value = ohm1.Value + ohm2.Value };
+            return new Ohm(ohm1.Value + ohm2.Value);
         }
         public static Ohm operator -(Ohm ohm1, Ohm ohm2)
         {
-            return new Ohm() { Value = ohm1.Value - ohm2.Value };
+            return new Ohm(ohm1.Value - ohm2.Value);
         }
         #endregion
 
         public static implicit operator Ohm(double value)
         {
-            return new Ohm() { Value = value };
+            return new Ohm(value);
+        }
+
+        public double GetValue()
+        {
+            return Value;
+        }
+
+        public bool Equals(Ohm other)
+        {
+            return this.Value.Equals(other.Value);
         }
     }
 }

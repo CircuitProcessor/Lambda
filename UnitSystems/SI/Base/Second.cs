@@ -3,13 +3,15 @@ using UnitSystems.Interfaces;
 
 namespace UnitSystems.SI.Base
 {
-    public struct Second : IUnit
+    public struct Second : IUnit, IEquatable<Second>
     {
-        public double Value { get; set; }
-        public string Symbol
+        public readonly double Value;
+
+        public Second(double value)
         {
-            get { return "s"; }
+            this.Value = value;
         }
+
 
         #region F = s/Ω
         public static Farad operator /(Second second, Ohm ohm)
@@ -31,7 +33,7 @@ namespace UnitSystems.SI.Base
 
         public static implicit operator Second(double value)
         {
-            return new Second() { Value = value };
+            return new Second(value);
         }
 
         public static SquareOf<Second> operator ^(Second source, int expo)
@@ -46,5 +48,19 @@ namespace UnitSystems.SI.Base
             throw new ArgumentException("Wrong Exponent.", nameof(expo));
         }
 
+        public string Symbol
+        {
+            get { return "s"; }
+        }
+
+        public double GetValue()
+        {
+            return Value;
+        }
+
+        public bool Equals(Second other)
+        {
+            return this.Value.Equals(other.Value);
+        }
     }
 }

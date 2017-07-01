@@ -7,17 +7,22 @@ namespace UnitSystems.SI.Complex
 {
     public struct ProductOfKilogramAndSquareMetre : IUnit
     {
-        public double Value
+        public ProductOfKilogramAndSquareMetre(double value)
         {
-            get{throw new NotImplementedException();}
-            set{ throw new NotImplementedException();}
+            this.Value = value;
         }
+
+        public readonly double Value;
 
         public string Symbol
         {
-            get{throw new NotImplementedException();}
+            get { return "kg*m^2"; }
         }
 
+        public double GetValue()
+        {
+            return Value;
+        }
 
         public static ProductOf<Kilogram, QuotientOf<SquareOf<Metre>, SquareOf<Second>>> operator /(ProductOfKilogramAndSquareMetre source, SquareOf<Second> squareSecond)
         {
@@ -33,14 +38,9 @@ namespace UnitSystems.SI.Complex
             return new ProductOfKilogramAndSquareMetre();
         }
 
-        //public static Weber operator /(ProductOfKilogramSquareMetre divisor, SquareSecondTimesAmpere divider)
-        //{
-        //    return new Weber() { Value = divisor.Value / divider.Value };
-        //}
-
         public static Weber operator /(ProductOfKilogramAndSquareMetre divisor, ProductOf<Ampere, SquareOf<Second>> divider)
         {
-            return new Weber() { Value = divisor.Value / divider.Value };
+            return new Weber(divisor.Value / divider.Value);
         }
     }
 }
