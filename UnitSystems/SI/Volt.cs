@@ -1,28 +1,20 @@
 ﻿using System;
 using UnitSystems.Interfaces;
 using UnitSystems.SI.Base;
+using UnitSystems.SI.Complex;
 
 namespace UnitSystems.SI
 {
     public struct Volt : IUnit, IEquatable<Volt>
     {
-        public readonly double Value;
+        //public readonly double Value;
 
         public Volt(double value)
         {
             this.Value = value;
         }
-        public string Symbol
-        {
-            get { return "V"; }
-        }
-
-        public double GetValue()
-        {
-            return this.Value;
-        }
-
-
+        public string Symbol => "V";
+        public double Value { get; }
         public static ProductOf<Volt, Second> operator *(Volt volt, Second second)
         {
             return new ProductOf<Volt, Second>(volt, second);
@@ -72,11 +64,12 @@ namespace UnitSystems.SI
         }
         #endregion
 
-
+        #region Casting
         public static implicit operator Volt(double value)
         {
             return new Volt(value);
         }
+        #endregion
 
         public static SquareOf<Volt> operator ^(Volt source, int expo)
         {

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using UnitSystems.Interfaces;
 using UnitSystems.SI;
 using UnitSystems.SI.Base;
+using UnitSystems.SI.Complex;
 
 namespace UnitSystems
 {
@@ -32,7 +33,7 @@ namespace UnitSystems
             Coulomb coulomb = farad_SI * V;
 
             // W = (A^2)*R
-            Watt watt = (I ^ 2) * R;
+            Watt watt = (I ^ Power.Square) * R;
 
             // Square meter divided by meter is.. meter!
             Metre m1 = (m ^ Power.Square) / m;
@@ -60,7 +61,7 @@ namespace UnitSystems
 
             // 5. Determine the power dissipated by each resistor
             Watt P1 = V1 * Is; // 36 mW
-            Watt P2 = (Is ^ 2) * R2; // (6 mA)^2 * 3 kΩ = 108 mW
+            Watt P2 = (Is ^ Power.Square) * R2; // (6 mA)^2 * 3 kΩ = 108 mW
             Watt P3 = (V3 ^ 2) / R3; // (12 V)^2 / 2 kΩ = 72 mW
 
             // 6. Check if the total power supplied equals the total power dissipated

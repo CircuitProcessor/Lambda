@@ -6,16 +6,14 @@ namespace UnitSystems.SI
 {
     public struct Tesla : IUnit, IEquatable<Tesla>
     {
-        public readonly double Value;
+        //public readonly double Value;
 
         public Tesla(double value)
         {
             this.Value = value;
         }
-        public string Symbol
-        {
-            get { return "T"; }
-        }
+        public string Symbol => "T";
+        public double Value { get; }
 
         public static Tesla operator +(Tesla tesla1, Tesla tesla2)
         {
@@ -26,15 +24,12 @@ namespace UnitSystems.SI
             return new Tesla(tesla1.Value - tesla2.Value);
         }
 
+        #region Casting
         public static implicit operator Tesla(double value)
         {
             return new Tesla(value);
         }
-
-        public double GetValue()
-        {
-            return Value;
-        }
+        #endregion
 
         public bool Equals(Tesla other)
         {

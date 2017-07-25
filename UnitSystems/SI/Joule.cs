@@ -6,36 +6,33 @@ using System.Text;
 using System.Threading.Tasks;
 using UnitSystems.Interfaces;
 using UnitSystems.SI.Base;
+using UnitSystems.SI.Complex;
 
 namespace UnitSystems.SI
 {
     public struct Joule : IUnit, IEquatable<Hertz>
     {
-        public readonly double Value;
+        //public readonly double Value;
 
         public Joule(double value)
         {
             this.Value = value;
         }
-        public string Symbol
-        {
-            get { return "J"; }
-        }
+        public string Symbol => "J";
 
-        public double GetValue()
-        {
-            return Value;
-        }
+        public double Value { get; }
 
         public static implicit operator ProductOf<Kilogram, QuotientOf<SquareOf<Metre>, SquareOf<Second>>>(Joule source)
         {
             return new ProductOf<Kilogram, QuotientOf<SquareOf<Metre>, SquareOf<Second>>>();
         }
 
+        #region Casting
         public static implicit operator Joule(ProductOf<Kilogram, QuotientOf<SquareOf<Metre>, SquareOf<Second>>> source)
         {
             return new Joule();
         }
+        #endregion
 
         public static Weber operator /(Joule joule, Ampere amp)
         {
@@ -46,18 +43,18 @@ namespace UnitSystems.SI
         #region W = J/s
         public static Watt operator /(Joule joule, Second sec)
         {
-            return new Watt() { Value = joule.Value * sec.Value };
+            return new Watt(joule.Value * sec.Value);
         }
         #endregion
 
         #region +/-
         public static Joule operator +(Joule joule1, Joule joule2)
         {
-            return new Joule() { Value = joule1.Value + joule2.Value };
+            return new Joule(joule1.Value + joule2.Value);
         }
         public static Joule operator -(Joule joule1, Joule joule2)
         {
-            return new Joule() { Value = joule1.Value - joule2.Value };
+            return new Joule(joule1.Value - joule2.Value);
         }
         #endregion
 

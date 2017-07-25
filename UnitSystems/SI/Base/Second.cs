@@ -1,11 +1,12 @@
 ﻿using System;
 using UnitSystems.Interfaces;
+using UnitSystems.SI.Complex;
 
 namespace UnitSystems.SI.Base
 {
     public struct Second : IUnit, IEquatable<Second>
     {
-        public readonly double Value;
+        //public readonly double Value;
 
         public Second(double value)
         {
@@ -16,30 +17,27 @@ namespace UnitSystems.SI.Base
         #region F = s/Ω
         public static Farad operator /(Second second, Ohm ohm)
         {
-            return new Farad() { Value = second.Value / ohm.Value };
+            return new Farad(second.Value / ohm.Value);
         }
         #endregion
 
         #region +/-
         public static Second operator +(Second second1, Second second2)
         {
-            return new Second() { Value = second1.Value + second2.Value };
+            return new Second(second1.Value + second2.Value);
         }
         public static Second operator -(Second second1, Second second2)
         {
-            return new Second() { Value = second1.Value - second2.Value };
+            return new Second(second1.Value - second2.Value);
         }
         #endregion
 
+        #region Casting
         public static implicit operator Second(double value)
         {
             return new Second(value);
         }
-
-        public static SquareOf<Second> operator ^(Second source, int expo)
-        {
-            return new SquareOf<Second>(source);
-        }
+        #endregion
 
         public static SquareOf<Second> operator ^(Second source, Power expo)
         {
@@ -48,19 +46,13 @@ namespace UnitSystems.SI.Base
             throw new ArgumentException("Wrong Exponent.", nameof(expo));
         }
 
-        public string Symbol
-        {
-            get { return "s"; }
-        }
+        public string Symbol => "s";
 
-        public double GetValue()
-        {
-            return Value;
-        }
+        public double Value { get; }
 
         public bool Equals(Second other)
         {
-            return this.Value.Equals(other.Value);
+            return Value.Equals(other.Value);
         }
     }
 }

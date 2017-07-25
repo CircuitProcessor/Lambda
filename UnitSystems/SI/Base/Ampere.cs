@@ -1,21 +1,22 @@
 using System;
 using UnitSystems.Interfaces;
+using UnitSystems.SI.Complex;
 
 namespace UnitSystems.SI.Base
 {
     public struct Ampere : IUnit, IEquatable<Ampere>
     {
-        public readonly double Value;
+        //public readonly double Value;
 
         public Ampere(double value)
         {
-            this.Value = value;
+            Value = value;
         }
 
         #region V = A·R
         public static Volt operator *(Ampere ampers, Ohm ohms)
         {
-            return new Volt() { Value = ampers.Value * ohms.Value };
+            return new Volt(ampers.Value * ohms.Value);
         }
         #endregion
 
@@ -50,20 +51,15 @@ namespace UnitSystems.SI.Base
         }
         #endregion
 
+        #region Casting
         public static implicit operator Ampere(double value)
         {
             return new Ampere(value);
         }
+        #endregion
+        public string Symbol => "A";
 
-        public double GetValue()
-        {
-            return this.Value;
-        }
-
-        public string Symbol
-        {
-            get { return "A"; }
-        }
+        public double Value { get; }
 
         public bool Equals(Ampere other)
         {

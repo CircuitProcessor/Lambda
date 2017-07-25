@@ -1,6 +1,7 @@
 ﻿using System;
 using UnitSystems.Interfaces;
 using UnitSystems.SI.Base;
+using UnitSystems.SI.Complex;
 
 namespace UnitSystems.SI
 {
@@ -10,24 +11,14 @@ namespace UnitSystems.SI
     /// </summary>
     public struct Watt : IUnit, IEquatable<Watt>
     {
-
-        public readonly double Value;
+        //public readonly double Value;
 
         public Watt(double value)
         {
             this.Value = value;
         }
-
-
-        public string Symbol
-        {
-            get { return "W"; }
-        }
-
-        public double GetValue()
-        {
-            return this.Value;
-        }
+        public string Symbol => "W";
+        public double Value { get; }
 
         #region J = W∙s
         public static Joule operator *(Watt watt, Second sec)
@@ -83,11 +74,12 @@ namespace UnitSystems.SI
         }
         #endregion
 
+        #region Casting
         public static implicit operator Watt(double value)
         {
             return new Watt(value);
         }
-
+        #endregion
 
         public bool Equals(Watt other)
         {

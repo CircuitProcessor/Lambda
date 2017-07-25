@@ -4,7 +4,7 @@ namespace UnitSystems.Interfaces
     {
         string Symbol { get; }
 
-        double GetValue();
+        double Value { get; }
     }
 
 }

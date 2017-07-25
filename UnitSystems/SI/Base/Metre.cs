@@ -1,11 +1,12 @@
 using System;
 using UnitSystems.Interfaces;
+using UnitSystems.SI.Complex;
 
 namespace UnitSystems.SI.Base
 {
     public struct Metre : IUnit, IEquatable<Metre>
     {
-        public readonly double Value;
+        //public readonly double Value;
 
         public Metre(double value)
         {
@@ -33,19 +34,14 @@ namespace UnitSystems.SI.Base
         }
         #endregion
 
+        #region Casting
         public static implicit operator Metre(double value)
         {
             return new Metre(value);
         }
-
-        public double GetValue()
-        {
-            return this.Value;
-        }
-        public string Symbol
-        {
-            get { return "m"; }
-        }
+        #endregion
+        public string Symbol => "m";
+        public double Value { get; }
 
         public bool Equals(Metre other)
         {

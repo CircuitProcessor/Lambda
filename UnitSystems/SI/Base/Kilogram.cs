@@ -6,11 +6,11 @@ namespace UnitSystems.SI.Base
 {
     public struct Kilogram : IUnit, IEquatable<Kilogram>
     {
-        public readonly double Value;
+        //public readonly double Value;
 
         public Kilogram(double value)
         {
-            this.Value = value;
+            Value = value;
         }
 
         #region Complex
@@ -24,30 +24,25 @@ namespace UnitSystems.SI.Base
 
         public static Kilogram operator +(Kilogram kg1, Kilogram kg2)
         {
-            return new Kilogram() { Value = kg1.Value + kg2.Value };
+            return new Kilogram(kg1.Value + kg2.Value);
         }
 
         public static Kilogram operator -(Kilogram kg1, Kilogram kg2)
         {
-            return new Kilogram() { Value = kg1.Value - kg2.Value };
+            return new Kilogram(kg1.Value - kg2.Value);
         }
 
         #endregion
 
+        #region Casting
         public static implicit operator Kilogram(double value)
         {
             return new Kilogram(value);
         }
+        #endregion
+        public string Symbol => "kg";
 
-        public double GetValue()
-        {
-            return this.Value;
-        }
-
-        public string Symbol
-        {
-            get { return "kg"; }
-        }
+        public double Value { get; }
 
         public bool Equals(Kilogram other)
         {

@@ -2,6 +2,7 @@
 using FluentAssertions;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using UnitSystems.SI.Base;
+using UnitSystems.SI.Complex;
 
 namespace UnitSystems.Tests
 {

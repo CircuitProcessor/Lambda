@@ -1,12 +1,13 @@
 ﻿using System;
 using UnitSystems.Interfaces;
 using UnitSystems.SI.Base;
+using UnitSystems.SI.Complex;
 
 namespace UnitSystems.SI
 {
     public struct Ohm : IUnit, IEquatable<Ohm>
     {
-        public readonly double Value;
+        //public readonly double Value;
 
         public Ohm(double value)
         {
@@ -21,6 +22,8 @@ namespace UnitSystems.SI
             }
         }
 
+        public double Value { get; }
+
         public static QuotientOf<Ohm, Metre> operator /(Ohm ohm, Metre metre)
         {
             return new QuotientOf<Ohm, Metre>(ohm, metre);
@@ -28,12 +31,12 @@ namespace UnitSystems.SI
 
         public static Watt operator /(SquareOf<Volt> squareVolt, Ohm ohm)
         {
-            return new Watt() { Value = squareVolt.Value / ohm.Value };
+            return new Watt(squareVolt.Value / ohm.Value);
         }
 
         public static Watt operator *(SquareOf<Ampere> squareAmper, Ohm ohm)
         {
-            return new Watt() { Value = squareAmper.Value * ohm.Value };
+            return new Watt(squareAmper.Value * ohm.Value);
         }
 
         #region +/-
@@ -51,12 +54,7 @@ namespace UnitSystems.SI
         {
             return new Ohm(value);
         }
-
-        public double GetValue()
-        {
-            return Value;
-        }
-
+        
         public bool Equals(Ohm other)
         {
             return this.Value.Equals(other.Value);

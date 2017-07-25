@@ -9,20 +9,15 @@ namespace UnitSystems.SI.Complex
     {
         public ProductOfKilogramAndSquareMetre(double value)
         {
-            this.Value = value;
+            Value = value;
         }
-
-        public readonly double Value;
 
         public string Symbol
         {
             get { return "kg*m^2"; }
         }
 
-        public double GetValue()
-        {
-            return Value;
-        }
+        public double Value { get; }
 
         public static ProductOf<Kilogram, QuotientOf<SquareOf<Metre>, SquareOf<Second>>> operator /(ProductOfKilogramAndSquareMetre source, SquareOf<Second> squareSecond)
         {
