@@ -1,9 +1,9 @@
-using System;
-using UnitSystems.Interfaces;
-using UnitSystems.SI.Complex;
-
-namespace UnitSystems.SI.Base
+namespace UnitSystems.SI
 {
+    using System;
+    using Complex;
+    using Interfaces;
+
     public struct Metre : IUnit, IEquatable<Metre>
     {
         //public readonly double Value;
@@ -16,11 +16,6 @@ namespace UnitSystems.SI.Base
         public static Metre operator /(SquareOf<Metre> divisor, Metre divider)
         {
             return new Metre(divisor.Value / divider.Value);
-        }
-
-        public static SquareOf<Metre> operator ^(Metre source, Power expo)
-        {
-            return new SquareOf<Metre>(source);
         }
 
         #region +/-

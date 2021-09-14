@@ -1,6 +1,5 @@
 using System;
 using UnitSystems.Interfaces;
-using UnitSystems.SI.Base;
 
 namespace UnitSystems.SI
 {

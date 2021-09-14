@@ -1,34 +1,33 @@
 ﻿using System;
-using System.Diagnostics;
-using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using UnitSystems.SI.Base;
+using Xunit;
+using Shouldly;
 
 namespace UnitSystems.Tests
 {
-    [TestClass]
+    using Extensions;
+    using SI;
+
     public class PerformanceTests
     {
-        [TestMethod]
+        //[Fact]
         public void Performance_ShouldExecuteInTime_WhenAddingOrSubtracting()
         {
-            Action forLoopSI = () =>
+            Action unitActions = () =>
             {
-                Ampere x = 0;
                 for (double i = 1; i < 1000000; i++) // 1 million
                 {
-                    x += i;
-                    x -= i/2;
+                    // implicit assign
+                    Ampere ampere = i;
+                    
+                    // sum
+                    Ampere sum = ampere + ampere;
+
+                    // subtract
+                    Ampere sub = sum - sum;
                 }
             };
-#if DEBUG
-            forLoopSI.ExecutionTime().ShouldNotExceed(TimeSpan.FromMilliseconds(1));
-#else
-            forLoopSI.ExecutionTime().ShouldNotExceed(TimeSpan.FromMilliseconds(1));
-#endif
 
-
-
+            unitActions.MeasureExecutionTime().ShouldBeLessThan(TimeSpan.FromMilliseconds(1));
         }
     }
 }

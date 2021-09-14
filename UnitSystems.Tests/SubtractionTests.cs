@@ -1,14 +1,14 @@
-﻿using System;
-using FluentAssertions;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using UnitSystems.SI.Base;
+﻿using Shouldly;
+using System;
+using Xunit;
 
 namespace UnitSystems.Tests
 {
-    [TestClass]
+    using SI;
+
     public class SubtractionTests
     {
-        [TestMethod]
+        [Fact]
         public void Ampere_ShouldReturnNegativeInt_WhenImplicitlySubtracting()
         {
             //arrange
@@ -18,7 +18,7 @@ namespace UnitSystems.Tests
             //act
             var result = amp1 + amp2 - amp3;
             //assert
-            result.Value.Should().BeNegative().And.Be(-32, "because 3+12-47=-32");
+            result.Value.ShouldBe(-32, "because 3+12-47=-32");
         }
     }
 }
