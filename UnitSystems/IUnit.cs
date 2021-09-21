@@ -1,4 +1,4 @@
-namespace UnitSystems.Interfaces
+namespace UnitSystems
 {
     public interface IUnit
     {

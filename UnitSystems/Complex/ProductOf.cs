@@ -1,7 +1,6 @@
 using System;
 using System.Collections;
 using System.ComponentModel;
-using UnitSystems.Interfaces;
 using UnitSystems.SI;
 
 namespace UnitSystems
@@ -83,7 +82,7 @@ namespace UnitSystems
 
         public static ProductOf<T1, T2> operator /(int value, ProductOf<T1, T2> source)
         {
-            return new ProductOf<T1, T2>(source._unit1, source._unit2, value / source.Value);
+            return new(source._unit1, source._unit2, value / source.Value);
         }
 
 

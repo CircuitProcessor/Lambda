@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.31624.102
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{51A2CF9A-65CB-47E3-AACD-3041FA917E3A}"
 	ProjectSection(SolutionItems) = preProject
-		Local.testsettings = Local.testsettings
+		README.md = README.md
 	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitSystems.Tests", "UnitSystems.Tests\UnitSystems.Tests.csproj", "{3CE9F040-EBF2-41F8-8E9B-8CD479555682}"

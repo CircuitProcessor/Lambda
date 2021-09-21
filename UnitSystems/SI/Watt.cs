@@ -1,5 +1,4 @@
 ﻿using System;
-using UnitSystems.Interfaces;
 using UnitSystems.SI.Complex;
 
 namespace UnitSystems.SI
@@ -22,7 +21,7 @@ namespace UnitSystems.SI
         #region J = W∙s
         public static Joule operator *(Watt watt, Second sec)
         {
-            return new Joule(watt.Value * sec.Value);
+            return new(watt.Value * sec.Value);
         }
         #endregion
 
@@ -40,23 +39,23 @@ namespace UnitSystems.SI
 
         public static Watt operator +(Watt watt1, Watt watt2)
         {
-            return new Watt(watt1.Value + watt2.Value);
+            return new(watt1.Value + watt2.Value);
         }
 
         public static Watt operator -(Watt watt1, Watt watt2)
         {
-            return new Watt(watt1.Value - watt2.Value);
+            return new(watt1.Value - watt2.Value);
         }
         #endregion
 
         #region W = V∙A
         public static implicit operator ProductOf<Volt, Ampere>(Watt watt)
         {
-            return new ProductOf<Volt, Ampere>(new Volt(), new Ampere(), watt.Value);
+            return new(new Volt(), new Ampere(), watt.Value);
         }
         public static implicit operator Watt(ProductOf<Volt, Ampere> source)
         {
-            return new Watt(source.Value);
+            return new(source.Value);
         }
         #endregion
 
@@ -65,18 +64,18 @@ namespace UnitSystems.SI
         {
             var amper = new Ampere();
             var resistance = new Ohm();
-            return new ProductOf<SquareOf<Ampere>, Ohm>(amper ^ Power.Square, resistance, watt.Value);
+            return new ProductOf<SquareOf<Ampere>, Ohm>(amper * amper, resistance, watt.Value);
         }
         public static implicit operator Watt(ProductOf<SquareOf<Ampere>, Ohm> source)
         {
-            return new Watt(source.Value);
+            return new(source.Value);
         }
         #endregion
 
         #region Casting
         public static implicit operator Watt(double value)
         {
-            return new Watt(value);
+            return new(value);
         }
         #endregion
 

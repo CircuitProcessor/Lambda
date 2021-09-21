@@ -1,12 +1,9 @@
 ﻿using Shouldly;
-using System;
 using UnitSystems.SI;
 using Xunit;
 
 namespace UnitSystems.Tests
 {
-    //<method>_Should<expected>_When<condition>
-
     public class AdditionTests
     {
         [Fact]
@@ -21,7 +18,5 @@ namespace UnitSystems.Tests
             //assert
             result.Value.ShouldBe(7.2, "because 3A + 4A + .2A = 7.2A");
         }
-
-
     }
 }

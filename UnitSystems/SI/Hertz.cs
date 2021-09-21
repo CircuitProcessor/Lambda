@@ -1,5 +1,4 @@
 ﻿using System;
-using UnitSystems.Interfaces;
 
 namespace UnitSystems.SI
 {
@@ -19,12 +18,12 @@ namespace UnitSystems.SI
 
         public static Hertz operator +(Hertz input1, Hertz input2)
         {
-            return new Hertz(input1.Value + input2.Value);
+            return new(input1.Value + input2.Value);
         }
 
         public static Hertz operator -(Hertz input1, Hertz input2)
         {
-            return new Hertz(input1.Value - input2.Value);
+            return new(input1.Value - input2.Value);
         }
 
         #endregion
@@ -32,7 +31,7 @@ namespace UnitSystems.SI
         #region Casting
         public static implicit operator Hertz(double value)
         {
-            return new Hertz(value);
+            return new(value);
         }
         #endregion
 

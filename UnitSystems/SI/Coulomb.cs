@@ -1,5 +1,4 @@
 ﻿using System;
-using UnitSystems.Interfaces;
 using UnitSystems.SI.Complex;
 
 namespace UnitSystems.SI
@@ -25,39 +24,39 @@ namespace UnitSystems.SI
         #region F = C/V
         public static Farad operator /(Coulomb coulomb, Volt volt)
         {
-            return new Farad(coulomb.Value / volt.Value);
+            return new(coulomb.Value / volt.Value);
         }
         #endregion
 
         #region J = C·V
         public static Joule operator *(Coulomb coulomb, Volt volt)
         {
-            return new Joule(coulomb.Value * volt.Value);
+            return new(coulomb.Value * volt.Value);
         }
         #endregion
+
+        public static SquareOf<Coulomb> operator *(Coulomb left, Coulomb right)
+        {
+            return new(left.Value * right.Value);
+        }
 
         #region +/-
 
         public static Coulomb operator +(Coulomb input1, Coulomb input2)
         {
-            return new Coulomb(input1.Value + input2.Value);
+            return new(input1.Value + input2.Value);
         }
 
         public static Coulomb operator -(Coulomb input1, Coulomb input2)
         {
-            return new Coulomb(input1.Value - input2.Value);
+            return new(input1.Value - input2.Value);
         }
 
         #endregion
 
         public static implicit operator Coulomb(double value)
         {
-            return new Coulomb(value);
-        }
-
-        public static SquareOf<Coulomb> operator ^(Coulomb source, int expo)
-        {
-            return new SquareOf<Coulomb>(source);
+            return new(value);
         }
 
     }

@@ -1,5 +1,4 @@
 ﻿using System;
-using UnitSystems.Interfaces;
 using UnitSystems.SI.Complex;
 
 namespace UnitSystems.SI
@@ -19,36 +18,36 @@ namespace UnitSystems.SI
 
         public static implicit operator QuotientOf<SquareOf<Coulomb>, Joule>(Farad farad)
         {
-            return new QuotientOf<SquareOf<Coulomb>, Joule>(new SquareOf<Coulomb>(new Coulomb()), new Joule(), farad.Value);
+            return new(new SquareOf<Coulomb>(new Coulomb()), new Joule(), farad.Value);
         }
         public static implicit operator Farad(QuotientOf<SquareOf<Coulomb>, Joule> input)
         {
-            return new Farad(input.Value);
+            return new(input.Value);
         }
 
 
         public static Coulomb operator *(Farad farad, Volt volt)
         {
-            return new Coulomb(farad.Value * volt.Value);
+            return new(farad.Value * volt.Value);
         }
 
         #region +/-
 
         public static Farad operator +(Farad input1, Farad input2)
         {
-            return new Farad(input1.Value + input2.Value);
+            return new(input1.Value + input2.Value);
         }
 
         public static Farad operator -(Farad input1, Farad input2)
         {
-            return new Farad(input1.Value - input2.Value);
+            return new(input1.Value - input2.Value);
         }
 
         #endregion
 
         public static implicit operator Farad(double value)
         {
-            return new Farad(value);
+            return new(value);
         }
 
         public bool Equals(Farad other)

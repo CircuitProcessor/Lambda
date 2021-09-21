@@ -1,5 +1,4 @@
 ﻿using Shouldly;
-using System;
 using Xunit;
 
 namespace UnitSystems.Tests
@@ -9,16 +8,17 @@ namespace UnitSystems.Tests
     public class SubtractionTests
     {
         [Fact]
-        public void Ampere_ShouldReturnNegativeInt_WhenImplicitlySubtracting()
+        public void Ampere_ShouldReturn0_WhenImplicitlySubtracting()
         {
             //arrange
-            Ampere amp1 = 3;
-            Ampere amp2 = 12;
-            Ampere amp3 = 47;
+            Ampere amp1 = 1;
+            Ampere amp2 = 2;
+            Ampere amp3 = 3;
             //act
-            var result = amp1 + amp2 - amp3;
+            var result = amp3 - amp2 - amp1;
             //assert
-            result.Value.ShouldBe(-32, "because 3+12-47=-32");
+            Ampere expected = 0;
+            result.ShouldBe(expected, $"because {amp3}-{amp2}-{amp1}={expected}");
         }
     }
 }

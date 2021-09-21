@@ -9,10 +9,11 @@
         {
             double average = 0;
             var stopWatch = Stopwatch.StartNew();
-            for (int i = 1; i < 100; i++)
+            for (int i = 1; i < 10; i++)
             {
                 action();
-                average = (average + stopWatch.ElapsedMilliseconds) / i;
+                var elapsedTime = stopWatch.ElapsedMilliseconds;
+                average = (average + elapsedTime) / i;
                 stopWatch.Restart();
             }
             stopWatch.Stop();

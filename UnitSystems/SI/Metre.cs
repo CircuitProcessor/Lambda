@@ -2,7 +2,6 @@ namespace UnitSystems.SI
 {
     using System;
     using Complex;
-    using Interfaces;
 
     public struct Metre : IUnit, IEquatable<Metre>
     {
@@ -15,24 +14,29 @@ namespace UnitSystems.SI
 
         public static Metre operator /(SquareOf<Metre> divisor, Metre divider)
         {
-            return new Metre(divisor.Value / divider.Value);
+            return new(divisor.Value / divider.Value);
+        }
+
+        public static SquareOf<Metre> operator *(Metre left, Metre right)
+        {
+            return new(left.Value * right.Value);
         }
 
         #region +/-
         public static Metre operator +(Metre metre1, Metre metre2)
         {
-            return new Metre(metre1.Value + metre2.Value);
+            return new(metre1.Value + metre2.Value);
         }
         public static Metre operator -(Metre metre1, Metre metre2)
         {
-            return new Metre(metre1.Value - metre2.Value);
+            return new(metre1.Value - metre2.Value);
         }
         #endregion
 
         #region Casting
         public static implicit operator Metre(double value)
         {
-            return new Metre(value);
+            return new(value);
         }
         #endregion
         public string Symbol => "m";
@@ -50,7 +54,7 @@ namespace UnitSystems.SI
         private Power()
         {}
 
-        public static readonly Power Square = new Power();
+        public static readonly Power Square = new();
         //public static readonly Power Cubic = new Power(Level.Cubic);
     }
 

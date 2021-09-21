@@ -1,6 +1,4 @@
-﻿using UnitSystems.Interfaces;
-
-namespace UnitSystems.SI.Complex
+﻿namespace UnitSystems.SI.Complex
 {
     public struct SquareOf<T1> : IUnit where T1 : IUnit
     {
@@ -27,18 +25,18 @@ namespace UnitSystems.SI.Complex
 
         public static QuotientOf<SquareOf<T1>, Joule> operator /(SquareOf<T1> square, Joule joule)
         {
-            return new QuotientOf<SquareOf<T1>, Joule>(square, joule);
+            return new(square, joule);
         }
 
         
 
         public static ProductOf<Kilogram, SquareOf<T1>> operator *(SquareOf<T1> source, Kilogram kilogram)
         {
-            return new ProductOf<Kilogram, SquareOf<T1>>(kilogram, source);
+            return new(kilogram, source);
         }
         public static ProductOf<Kilogram, SquareOf<T1>> operator *(Kilogram kilogram, SquareOf<T1> source)
         {
-            return new ProductOf<Kilogram, SquareOf<T1>>(kilogram, source);
+            return new(kilogram, source);
         }
 
         public double Value

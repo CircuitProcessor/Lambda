@@ -2,7 +2,6 @@ namespace UnitSystems.SI
 {
     using System;
     using Complex;
-    using Interfaces;
 
     public readonly struct Ampere : IUnit, IEquatable<Ampere>
     {
@@ -16,45 +15,44 @@ namespace UnitSystems.SI
         #region V = A·R
         public static Volt operator *(Ampere ampere, Ohm ohm)
         {
-            return new Volt(ampere.Value * ohm.Value);
+            return new(ampere.Value * ohm.Value);
         }
+
+
+        //
+        public static SquareOf<Ampere> operator *(Ampere left, Ampere right)
+        {
+            return new(left.Value * right.Value);
+        }
+
+
         #endregion
 
-        #region Wb = J/A
-        public static Weber operator /(Joule joule, Ampere amp)
-        {
-            return new Weber();
-        }
-        #endregion
+
 
         #region +/-
-        public static Ampere operator +(Ampere ampere1, Ampere ampere2)
+        public static Ampere operator +(Ampere left, Ampere right)
         {
-            return new Ampere(ampere1.Value + ampere2.Value);
+            return new(left.Value + right.Value);
         }
-        public static Ampere operator -(Ampere ampere1, Ampere ampere2)
+        public static Ampere operator -(Ampere left, Ampere right)
         {
-            return new Ampere(ampere1.Value - ampere2.Value);
+            return new(left.Value - right.Value);
         }
         #endregion
 
         #region Complex
         public static ProductOf<Ampere, SquareOf<Second>> operator *(Ampere amp, SquareOf<Second> second)
         {
-            return new ProductOf<Ampere, SquareOf<Second>>();
+            return new();
         }
-        public static SquareOf<Ampere> operator ^(Ampere source, Power expo)
-        {
-            if (expo == Power.Square)
-                return new SquareOf<Ampere>(source);
-            throw new ArgumentException("Wrong Exponent.", nameof(expo));
-        }
+
         #endregion
 
         #region Casting
         public static implicit operator Ampere(double value)
         {
-            return new Ampere(value);
+            return new(value);
         }
         #endregion
         public string Symbol => "A";

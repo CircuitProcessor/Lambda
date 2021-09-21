@@ -1,5 +1,4 @@
 using System;
-using UnitSystems.Interfaces;
 
 namespace UnitSystems.SI
 {
@@ -16,17 +15,17 @@ namespace UnitSystems.SI
 
         public static Tesla operator +(Tesla tesla1, Tesla tesla2)
         {
-            return new Tesla(tesla1.Value + tesla2.Value);
+            return new(tesla1.Value + tesla2.Value);
         }
         public static Tesla operator -(Tesla tesla1, Tesla tesla2)
         {
-            return new Tesla(tesla1.Value - tesla2.Value);
+            return new(tesla1.Value - tesla2.Value);
         }
 
         #region Casting
         public static implicit operator Tesla(double value)
         {
-            return new Tesla(value);
+            return new(value);
         }
         #endregion
 

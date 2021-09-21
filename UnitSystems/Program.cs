@@ -1,9 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
-using UnitSystems.Interfaces;
 using UnitSystems.SI;
 using UnitSystems.SI.Complex;
 
@@ -13,6 +9,25 @@ namespace UnitSystems
     {
         static void Main(string[] args)
         {
+            // Implicit or traditional style declaration
+            Volt volt1 = 1.0;
+            Volt volt2 = new Volt(1);
+
+            // Build-in standard comparison operators present in ordinary types such as int
+            bool equal = volt1 == volt2;
+            bool notEqual = volt1 != volt2;
+            bool greaterThan = volt1 > volt2;
+            bool graterThanOrEqual = volt1 >= volt2;
+            // ..and so on. You get the idea.
+
+            // Addition and subtraction
+            Volt sum = volt1 + volt2;
+            Volt diff = volt1 - volt2;
+
+            // Conversion
+
+
+
             Volt V = 20;
             Ohm R = 10;
             Ampere I = 4;
@@ -23,20 +38,20 @@ namespace UnitSystems
             Ampere Iz = V / R;  // 2 A
 
             Metre m = 1;
+            Newton N = 1;
             Coulomb C = 1;
             Joule J = 1;
 
             // Farad in base SI = C^2/J
-            QuotientOf<SquareOf<Coulomb>, Joule> farad_SI = (C ^ 2) / J;
+            QuotientOf<SquareOf<Coulomb>, Joule> farad_SI = (C * C) / J;
             // Farad times Volt = Coulomb (even if multiplied in base SI representation)
             Coulomb coulomb = farad_SI * V;
 
             // W = (A^2)*R
-            Watt watt = (I ^ Power.Square) * R;
+            Watt watt = (I * I) * R;
 
             // Square meter divided by meter is.. meter!
-            Metre m1 = (m ^ Power.Square) / m;
-
+            Metre metre = (m * m) / m;
 
             // For the series circuit with given parameters:
             Ohm R1 = 1000;
@@ -60,33 +75,26 @@ namespace UnitSystems
 
             // 5. Determine the power dissipated by each resistor
             Watt P1 = V1 * Is; // 36 mW
-            Watt P2 = (Is ^ Power.Square) * R2; // (6 mA)^2 * 3 kΩ = 108 mW
-            Watt P3 = (V3 ^ 2) / R3; // (12 V)^2 / 2 kΩ = 72 mW
+            Watt P2 = (Is * Is) * R2; // (6 mA)^2 * 3 kΩ = 108 mW
+            Watt P3 = (V3 * V3) / R3; // (12 V)^2 / 2 kΩ = 72 mW
 
             // 6. Check if the total power supplied equals the total power dissipated
             bool powerSuppliedEqualsDissipated = Pe == P1 + P2 + P3; // true: 216 mW == 36 mW + 108 mW + 72 mW
 
-            
 
             Ampere amp = 1;
             Weber Wb = 1;
-            Metre metre = 1;
-            Tesla T = Wb / (metre ^ Power.Square);
-
             Kilogram kg = 1;
             Second s = 1;
-            Weber weberSI = (kg * (m ^ Power.Square)) / (amp * (s ^ Power.Square)); // it is also possible to get SI unit from complex representation.
-            //-------------------------------------------------------------------------
-            var joule_baseSI = (kg * (m ^ Power.Square)) / (s ^ Power.Square);
-            var weber_SI = joule_baseSI / amp; // Wb = J/A - that rule is used despite Joule base SI form.
 
+            //Nested resolution
+            // Wb = J/A | J = N∙m | A = V/R
+            Weber weber = (N * m) / (V / R);
 
             Console.OutputEncoding = Encoding.UTF8;
             Console.WriteLine("{0}·{1}·{2}");
             Console.ReadLine();
         }
-
-
     }
 
     /*  √2 ² ·

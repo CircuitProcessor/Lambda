@@ -4,7 +4,6 @@ using System.Linq;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
-using UnitSystems.Interfaces;
 using UnitSystems.SI.Complex;
 
 namespace UnitSystems.SI
@@ -23,43 +22,45 @@ namespace UnitSystems.SI
 
         public static implicit operator ProductOf<Kilogram, QuotientOf<SquareOf<Metre>, SquareOf<Second>>>(Joule source)
         {
-            return new ProductOf<Kilogram, QuotientOf<SquareOf<Metre>, SquareOf<Second>>>();
+            return new();
         }
 
         #region Casting
         public static implicit operator Joule(ProductOf<Kilogram, QuotientOf<SquareOf<Metre>, SquareOf<Second>>> source)
         {
-            return new Joule();
+            return new();
         }
         #endregion
-
-        public static Weber operator /(Joule joule, Ampere amp)
-        {
-            return new Weber();
-        }
 
 
         #region W = J/s
         public static Watt operator /(Joule joule, Second sec)
         {
-            return new Watt(joule.Value * sec.Value);
+            return new(joule.Value * sec.Value);
+        }
+        #endregion
+
+        #region W = J/A
+        public static Weber operator /(Joule left, Ampere right)
+        {
+            return new(left.Value / right.Value);
         }
         #endregion
 
         #region +/-
         public static Joule operator +(Joule joule1, Joule joule2)
         {
-            return new Joule(joule1.Value + joule2.Value);
+            return new(joule1.Value + joule2.Value);
         }
         public static Joule operator -(Joule joule1, Joule joule2)
         {
-            return new Joule(joule1.Value - joule2.Value);
+            return new(joule1.Value - joule2.Value);
         }
         #endregion
 
         public static implicit operator Joule(double value)
         {
-            return new Joule(value);
+            return new(value);
         }
 
         public bool Equals(Hertz other)

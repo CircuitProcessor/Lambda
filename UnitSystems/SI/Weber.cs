@@ -1,5 +1,4 @@
-﻿using UnitSystems.Interfaces;
-using UnitSystems.SI.Complex;
+﻿using UnitSystems.SI.Complex;
 
 namespace UnitSystems.SI
 {
@@ -14,31 +13,31 @@ namespace UnitSystems.SI
 
         public static implicit operator Weber(ProductOf<Volt, Second> voltageSeconds)
         {
-            return new Weber(voltageSeconds.Value);
+            return new(voltageSeconds.Value);
         }
 
         public static implicit operator ProductOf<Volt, Second>(Weber weber)
         {
-            return new ProductOf<Volt, Second>(new Volt(), new Second(), weber.Value);
+            return new(new Volt(), new Second(), weber.Value);
         }
 
         public static implicit operator Weber(double value)
         {
-            return new Weber(value);
+            return new(value);
         }
 
         public static Tesla operator /(Weber weber, SquareOf<Metre> metre)
         {
-            return new Tesla(weber.Value / metre.Value);
+            return new(weber.Value / metre.Value);
         }
 
         public static Weber operator +(Weber weber1, Weber weber2)
         {
-            return new Weber(weber1.Value + weber2.Value);
+            return new(weber1.Value + weber2.Value);
         }
         public static Weber operator -(Weber weber1, Weber weber2)
         {
-            return new Weber(weber1.Value - weber2.Value);
+            return new(weber1.Value - weber2.Value);
         }
 
     }
