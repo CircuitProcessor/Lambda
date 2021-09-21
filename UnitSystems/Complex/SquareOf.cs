@@ -1,19 +1,10 @@
 ﻿namespace UnitSystems.SI.Complex
 {
-    public struct SquareOf<T1> : IUnit where T1 : IUnit
+    public readonly struct SquareOf<T1> : IUnit where T1 : struct, IUnit
     {
-        private readonly T1 _unit1;
-        public double _value;
-
-        public SquareOf(T1 unit) : this(unit, unit.Value * unit.Value)
+        public SquareOf(T1 unit)
         {
-            //unit²
-        }
-
-        public SquareOf(T1 unit1, double value)
-        {
-            _unit1 = unit1;
-            _value = value;
+            Value = unit.Value * unit.Value;
         }
 
         //public static T1 operator /(SquareOf<T1> square, T1 divider)
@@ -39,15 +30,8 @@
             return new(kilogram, source);
         }
 
-        public double Value
-        {
-            get { return _value; }
-            set { _value = value; }
-        }
-        public string Symbol
-        {
-            get { return _unit1.Symbol + "²"; }
-        }
+        public double Value { get; }
 
+        public string Symbol => default(T1).Symbol + "²";
     }
 }
