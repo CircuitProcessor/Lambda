@@ -1,0 +1,182 @@
+﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/Description/@EntryValue">&amp;Unit</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/Text/@EntryValue">namespace $namespace$&#xD;
+{&#xD;
+	using System;&#xD;
+	using System.Diagnostics;&#xD;
+	using UnitSystems;&#xD;
+&#xD;
+	[DebuggerDisplay("Value = {Value} {Symbol,nq}")]&#xD;
+	public readonly struct $unitname$ : IUnit, IPrefixable, IReplicable&lt;$unitname$&gt;, IComparable, IComparable&lt;$unitname$&gt;, IEquatable&lt;$unitname$&gt;&#xD;
+	{&#xD;
+	    public string Symbol =&gt; "$symbol$";&#xD;
+		public Prefix Prefix =&gt; Prefix.$prefix$;&#xD;
+        public double Value { get; }&#xD;
+&#xD;
+		public $unitname$(double value)&#xD;
+		{&#xD;
+			Value = value;&#xD;
+		}&#xD;
+&#xD;
+		#region +/-&#xD;
+&#xD;
+        public static $unitname$ operator +($unitname$ left, $unitname$ right)&#xD;
+        {&#xD;
+            return new(left.Value + right.Value);&#xD;
+        }&#xD;
+&#xD;
+        public static $unitname$ operator -($unitname$ left, $unitname$ right)&#xD;
+        {&#xD;
+            return new(left.Value - right.Value);&#xD;
+        }&#xD;
+&#xD;
+        #endregion&#xD;
+&#xD;
+		#region */÷&#xD;
+&#xD;
+        public static $unitname$ operator *($unitname$ unit, double multiplier)&#xD;
+        {&#xD;
+            return new $unitname$(unit.Value * multiplier);&#xD;
+        }&#xD;
+&#xD;
+        public static $unitname$ operator *(double multiplier, $unitname$ unit)&#xD;
+        {&#xD;
+            return new $unitname$(unit.Value * multiplier);&#xD;
+        }&#xD;
+&#xD;
+        public static $unitname$ operator /($unitname$ dividend, double divisor)&#xD;
+        {&#xD;
+            return new $unitname$(dividend.Value / divisor);&#xD;
+        }&#xD;
+&#xD;
+        public static double operator /($unitname$ dividend, $unitname$ divisor)&#xD;
+        {&#xD;
+            return dividend.Value / divisor.Value;&#xD;
+        }&#xD;
+&#xD;
+        #endregion */÷&#xD;
+&#xD;
+		#region $symbol$² = $symbol$·$symbol$&#xD;
+        public static SquareOf&lt;$unitname$&gt; operator *($unitname$ left, $unitname$ right)&#xD;
+        {&#xD;
+            return new(left.Value * right.Value);&#xD;
+        }&#xD;
+        #endregion&#xD;
+&#xD;
+		#region $symbol$ = $symbol$² / $symbol$&#xD;
+        public static $unitname$ operator /(SquareOf&lt;$unitname$&gt; left, $unitname$ right)&#xD;
+        {&#xD;
+            return new(left.Value / right.Value);&#xD;
+        }&#xD;
+        #endregion&#xD;
+&#xD;
+&#xD;
+        #region Casting/Conversion&#xD;
+&#xD;
+        public static implicit operator $unitname$(double value)&#xD;
+        {&#xD;
+            return new(value);&#xD;
+        }&#xD;
+&#xD;
+        #endregion&#xD;
+&#xD;
+        #region IReplicable implementation&#xD;
+&#xD;
+        public $unitname$ ReplicateFrom(double value)&#xD;
+        {&#xD;
+            return new $unitname$(value);&#xD;
+        }&#xD;
+&#xD;
+        #endregion&#xD;
+&#xD;
+        #region IEquatable implementation&#xD;
+&#xD;
+        public bool Equals($unitname$ other)&#xD;
+        {&#xD;
+            return Value.Equals(other.Value);&#xD;
+        }&#xD;
+&#xD;
+        public override bool Equals(object obj)&#xD;
+        {&#xD;
+            return obj is $unitname$ other &amp;&amp; Equals(other);&#xD;
+        }&#xD;
+&#xD;
+        public override int GetHashCode()&#xD;
+        {&#xD;
+            return HashCode.Combine(Value, Prefix, Symbol);&#xD;
+        }&#xD;
+&#xD;
+        #endregion&#xD;
+&#xD;
+        #region IComparable implementation&#xD;
+&#xD;
+        public int CompareTo($unitname$ other)&#xD;
+        {&#xD;
+            return Value.CompareTo(other.Value);&#xD;
+        }&#xD;
+&#xD;
+        public int CompareTo(object obj)&#xD;
+        {&#xD;
+            return Value.CompareTo(obj);&#xD;
+        }&#xD;
+&#xD;
+        public static bool operator ==($unitname$ left, $unitname$ right)&#xD;
+        {&#xD;
+            return left.Equals(right);&#xD;
+        }&#xD;
+&#xD;
+        public static bool operator !=($unitname$ left, $unitname$ right)&#xD;
+        {&#xD;
+            return !left.Equals(right);&#xD;
+        }&#xD;
+&#xD;
+        public static bool operator &lt;($unitname$ left, $unitname$ right)&#xD;
+        {&#xD;
+            return left.CompareTo(right) &lt; 0;&#xD;
+        }&#xD;
+&#xD;
+        public static bool operator &lt;=($unitname$ left, $unitname$ right)&#xD;
+        {&#xD;
+            return left.CompareTo(right) &lt;= 0;&#xD;
+        }&#xD;
+&#xD;
+        public static bool operator &gt;($unitname$ left, $unitname$ right)&#xD;
+        {&#xD;
+            return left.CompareTo(right) &gt; 0;&#xD;
+        }&#xD;
+&#xD;
+        public static bool operator &gt;=($unitname$ left, $unitname$ right)&#xD;
+        {&#xD;
+            return left.CompareTo(right) &gt;= 0;&#xD;
+        }&#xD;
+&#xD;
+        #endregion&#xD;
+&#xD;
+	$END$&#xD;
+	}&#xD;
+&#xD;
+}</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/UITag/@EntryValue">Class/Interface</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/Reformat/@EntryValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/ShortenQualifiedReferences/@EntryValue">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/CustomProperties/=FileName/@EntryIndexedValue">NewUnit</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/CustomProperties/=Extension/@EntryIndexedValue">cs</s:String>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/CustomProperties/=ValidateFileName/@EntryIndexedValue">True</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/Applicability/=File/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/Scope/=E8F0594528C33E45BBFEC6CFE851095D/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/Scope/=E8F0594528C33E45BBFEC6CFE851095D/Type/@EntryValue">InCSharpProjectFile</s:String>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/Field/=unitname/@KeyIndexDefined">True</s:Boolean>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/Field/=unitname/Order/@EntryValue">0</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/Field/=namespace/@KeyIndexDefined">True</s:Boolean>
+	<s:String x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/Field/=namespace/Expression/@EntryValue">fileDefaultNamespace()</s:String>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/Field/=namespace/InitialRange/@EntryValue">-1</s:Int64>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/Field/=namespace/Order/@EntryValue">1</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/Field/=symbol/@KeyIndexDefined">True</s:Boolean>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/Field/=symbol/Order/@EntryValue">2</s:Int64>
+	<s:Boolean x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/Field/=prefix/@KeyIndexDefined">True</s:Boolean>
+	<s:Int64 x:Key="/Default/PatternsAndTemplates/LiveTemplates/Template/=E1745E3292444A4893FFB15911158DBE/Field/=prefix/Order/@EntryValue">3</s:Int64>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Kilovolt/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Metre/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Millimetre/@EntryIndexedValue">True</s:Boolean>
+	<s:Boolean x:Key="/Default/UserDictionary/Words/=Prefixable/@EntryIndexedValue">True</s:Boolean></wpf:ResourceDictionary>

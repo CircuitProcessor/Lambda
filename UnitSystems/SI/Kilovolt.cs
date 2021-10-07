@@ -2,126 +2,126 @@
 {
     using System;
     using System.Diagnostics;
+    using Complex;
     using UnitSystems;
 
-    [DebuggerDisplay("Value = {_value} {Symbol,nq}")]
-    public readonly struct Kilovolt : IUnit, IEquatable<Kilovolt>, IComparable<Kilovolt>, IPrefixable, IReplicable<Kilovolt>
+    [DebuggerDisplay("Value = {Value} {Symbol,nq}")]
+    public readonly struct Kilovolt : IUnit, IPrefixable, IReplicable<Kilovolt>, IComparable, IComparable<Kilovolt>,
+        IEquatable<Kilovolt>
     {
-        private readonly double _value;
-
-        double IUnit.Value => _value;
-
         public string Symbol => "kV";
+        public Prefix Prefix => Prefix.Kilo;
+        public double Value { get; }
 
         public Kilovolt(double value)
         {
-            _value = value;
+            Value = value;
         }
-
-        public Kilovolt(Volt volt)
-            : this(volt.Value, volt.Prefix)
-        {
-        }
-
-
-        private Kilovolt(double value, Prefix from)
-        {
-            _value = value * Prefixes.GetConversionFactor(from, to: Prefix.Kilo);
-        }
-
-        #region */÷
-
-        public static Kilovolt operator *(Kilovolt value, double multiplier)
-        {
-            return new Kilovolt(value._value * multiplier);
-        }
-
-        public static Kilovolt operator *(double multiplier, Kilovolt value)
-        {
-            return new Kilovolt(value._value * multiplier);
-        }
-
-        public static Kilovolt operator /(Kilovolt dividend, double divisor)
-        {
-            return new Kilovolt(dividend._value / divisor);
-        }
-
-        public static double operator /(Kilovolt dividend, Kilovolt divisor)
-        {
-            return dividend._value / divisor._value;
-        }
-
-        public static Farad operator /(ProductOf<Kilovolt, Farad> dividend, Kilovolt divisor)
-        {
-            return new Farad(dividend.Value / divisor._value);
-        }
-
-        public static Farad operator /(ProductOf<Farad, Kilovolt> dividend, Kilovolt divisor)
-        {
-            return new Farad(dividend.Value / divisor._value);
-        }
-
-        #endregion */÷
 
         #region +/-
 
         public static Kilovolt operator +(Kilovolt left, Kilovolt right)
         {
-            return new Kilovolt(left._value + right._value);
+            return new(left.Value + right.Value);
         }
 
         public static Kilovolt operator -(Kilovolt left, Kilovolt right)
         {
-            return new Kilovolt(left._value - right._value);
+            return new(left.Value - right.Value);
         }
 
-        #endregion +/-
+        #endregion
 
-        #region Casting operators
+        #region */÷
 
-        public static explicit operator double(Kilovolt value)
+        public static Kilovolt operator *(Kilovolt unit, double multiplier)
         {
-            return value._value;
+            return new Kilovolt(unit.Value * multiplier);
         }
+
+        public static Kilovolt operator *(double multiplier, Kilovolt unit)
+        {
+            return new Kilovolt(unit.Value * multiplier);
+        }
+
+        public static Kilovolt operator /(Kilovolt dividend, double divisor)
+        {
+            return new Kilovolt(dividend.Value / divisor);
+        }
+
+        public static double operator /(Kilovolt dividend, Kilovolt divisor)
+        {
+            return dividend.Value / divisor.Value;
+        }
+
+        #endregion */÷
+
+        #region kV² = kV·kV
+
+        public static SquareOf<Kilovolt> operator *(Kilovolt left, Kilovolt right)
+        {
+            return new(left.Value * right.Value);
+        }
+
+        #endregion
+
+        #region kV = kV² / kV
+
+        public static Kilovolt operator /(SquareOf<Kilovolt> left, Kilovolt right)
+        {
+            return new(left.Value / right.Value);
+        }
+
+        #endregion
+
+
+        #region Casting/Conversion
 
         public static implicit operator Kilovolt(double value)
         {
-            return new Kilovolt(value);
+            return new(value);
         }
 
-        public static implicit operator Kilovolt(Volt value)
+        #endregion
+
+        #region IReplicable implementation
+
+        public Kilovolt ReplicateFrom(double value)
         {
             return new Kilovolt(value);
         }
 
-
-        #endregion Casting operators
+        #endregion
 
         #region IEquatable implementation
 
-        public bool Equals(Kilovolt other) => _value.Equals(other._value);
+        public bool Equals(Kilovolt other)
+        {
+            return Value.Equals(other.Value);
+        }
 
         public override bool Equals(object obj)
         {
-            if (obj is Kilovolt other)
-            {
-                return Equals(other);
-            }
-
-            return false;
+            return obj is Kilovolt other && Equals(other);
         }
 
         public override int GetHashCode()
         {
-            unchecked
-            {
-                const int baseHashCode = -2_039_883_636;
-                const int multiplier = -1_521_134_295;
-                var hashCode = baseHashCode * multiplier ^ _value.GetHashCode();
-                hashCode = hashCode * multiplier ^ Symbol.GetHashCode();
-                hashCode = hashCode * multiplier ^ Prefix.GetHashCode();
-                return hashCode;
-            }
+            return HashCode.Combine(Value, Prefix, Symbol);
+        }
+
+        #endregion
+
+        #region IComparable implementation
+
+        public int CompareTo(Kilovolt other)
+        {
+            return Value.CompareTo(other.Value);
+        }
+
+        public int CompareTo(object obj)
+        {
+            return Value.CompareTo(obj);
         }
 
         public static bool operator ==(Kilovolt left, Kilovolt right)
@@ -134,20 +134,9 @@
             return !left.Equals(right);
         }
 
-        #endregion IEquatable implementation
-
-        #region IComparable implementation
-
-        public int CompareTo(Kilovolt other) => _value.CompareTo(other._value);
-
         public static bool operator <(Kilovolt left, Kilovolt right)
         {
             return left.CompareTo(right) < 0;
-        }
-
-        public static bool operator >(Kilovolt left, Kilovolt right)
-        {
-            return left.CompareTo(right) > 0;
         }
 
         public static bool operator <=(Kilovolt left, Kilovolt right)
@@ -155,23 +144,17 @@
             return left.CompareTo(right) <= 0;
         }
 
+        public static bool operator >(Kilovolt left, Kilovolt right)
+        {
+            return left.CompareTo(right) > 0;
+        }
+
         public static bool operator >=(Kilovolt left, Kilovolt right)
         {
             return left.CompareTo(right) >= 0;
         }
 
-        #endregion IComparable implementation
-
-        #region IPrefixable implementation
-
-        public Prefix Prefix => Prefix.Kilo;
-
-        #endregion IPrefixable implementation
-
-        #region IReplicable implementation
-
-        public Kilovolt ReplicateFrom(double value) => value;
-
-        #endregion IReplicable implementation
+        #endregion
     }
+
 }

@@ -1,10 +1,11 @@
 ﻿using System;
 using System.Text;
 using UnitSystems.SI;
-using UnitSystems.SI.Complex;
 
 namespace UnitSystems
 {
+    using Complex;
+
     class Program
     {
         static void Main(string[] args)
@@ -25,7 +26,8 @@ namespace UnitSystems
             Volt diff = volt1 - volt2;
 
             // Conversion
-
+            Gram gram = 1000;
+            //Kilogram kg = (Kilogram)gram;
 
 
             Volt V = 20;
@@ -41,6 +43,9 @@ namespace UnitSystems
             Newton N = 1;
             Coulomb C = 1;
             Joule J = 1;
+
+            //////////////////////////////////////////////////////////////////////////////////
+
 
             // Farad in base SI = C^2/J
             QuotientOf<SquareOf<Coulomb>, Joule> farad_SI = (C * C) / J;

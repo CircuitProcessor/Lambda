@@ -1,96 +1,45 @@
-using System;
-using System.Collections;
-using System.ComponentModel;
-using UnitSystems.SI;
-
-namespace UnitSystems
+namespace UnitSystems.Complex
 {
+    using System.Diagnostics;
 
-    public struct ProductOf<T1, T2> : IUnit
-        where T1 : IUnit
-        where T2 : IUnit
+    [DebuggerDisplay("Value = {Value} {Symbol,nq}")]
+    public readonly struct ProductOf<T1, T2> : IUnit, IReplicable<ProductOf<T1, T2>>
+        where T1 : struct, IUnit, IReplicable<T1>
+        where T2 : struct, IUnit, IReplicable<T2>
     {
+        public string Symbol => $"{_unit1.Symbol}·{_unit2.Symbol}";
+        public double Value { get; }
+
         private readonly T1 _unit1;
         private readonly T2 _unit2;
-        //private double _value;
 
         public ProductOf(T1 unit1, T2 unit2)
-            : this(unit1, unit2, unit1.Value * unit2.Value)
+            : this(unit1.Value * unit2.Value)
         {
         }
 
-        public ProductOf(T1 unit1, T2 unit2, double value)
+        public ProductOf(double value)
         {
-            _unit1 = unit1;
-            _unit2 = unit2;
+            _unit1 = default;
+            _unit2 = default;
             Value = value;
         }
 
-
-        public double Value { get; }
-
-        public string Symbol => String.Format("{0}·{1}", _unit1.Symbol, _unit2.Symbol);
-
-        //public string Symbol()
-        //{
-        //    return String.Format("{0}·{1}", _unit1.Symbol, _unit2.Symbol);
-        //}
-
-        //public static T1 operator /(ProductOf<T1, T2> source, T2 unit)
-        //{
-        //    var result = default(T1);
-        //    result.Value = source.Value / unit.Value;
-        //    return result;
-        //}
-
-        public static QuotientOf<ProductOf<T1, T2>, Second> operator /(ProductOf<T1, T2> source, Second second)
+        public static T1 operator /(ProductOf<T1, T2> left, T2 right)
         {
-            var q = new QuotientOf<ProductOf<T1, T2>, Second>(new ProductOf<T1, T2>(default(T1), default(T2)), second,
-                source.Value / second.Value);
-            return q;
+            var result = default(T1).ReplicateFrom(left.Value / right.Value);
+            return result;
         }
 
-        public static QuotientOf<ProductOf<T1, T2>, Kilogram> operator /(ProductOf<T1, T2> source, Kilogram kilogram)
+        public static T2 operator /(ProductOf<T1, T2> source, T1 unit)
         {
-            var q = new QuotientOf<ProductOf<T1, T2>, Kilogram>(new ProductOf<T1, T2>(default(T1), default(T2)), kilogram,
-                source.Value / kilogram.Value);
-            return q;
+            var result = default(T2).ReplicateFrom(source.Value / unit.Value);
+            return result;
         }
 
-
-        public static QuotientOf<ProductOf<T1, T2>, Metre> operator /(ProductOf<T1, T2> source, Metre metre)
+        public ProductOf<T1, T2> ReplicateFrom(double value)
         {
-            var q = new QuotientOf<ProductOf<T1, T2>, Metre>(new ProductOf<T1, T2>(default(T1), default(T2)), metre,
-                source.Value / metre.Value);
-            return q;
-        }
-
-        public static QuotientOf<ProductOf<T1, T2>, Ampere> operator /(ProductOf<T1, T2> source, Ampere ampere)
-        {
-            var q = new QuotientOf<ProductOf<T1, T2>, Ampere>(new ProductOf<T1, T2>(default(T1), default(T2)), ampere,
-                source.Value / ampere.Value);
-            return q;
-        }
-
-        //public static T2 operator /(ProductOf<T1, T2> source, T1 unit)
-        //{
-        //    var result = default(T2);
-        //    result.Value = source.Value / unit.Value;
-        //    return result;
-        //}
-
-
-        public static ProductOf<T1, T2> operator /(int value, ProductOf<T1, T2> source)
-        {
-            return new(source._unit1, source._unit2, value / source.Value);
-        }
-
-
-        public override string ToString()
-        {
-            return String.Format("{0} {1}", Value, Symbol);
+            return new(value);
         }
     }
-
-
 }

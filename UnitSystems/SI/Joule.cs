@@ -1,37 +1,78 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.AccessControl;
-using System.Text;
-using System.Threading.Tasks;
-using UnitSystems.SI.Complex;
-
-namespace UnitSystems.SI
+﻿namespace UnitSystems.SI
 {
-    public struct Joule : IUnit, IEquatable<Hertz>
+    using System;
+    using System.Diagnostics;
+    using Complex;
+    using UnitSystems;
+
+    [DebuggerDisplay("Value = {Value} {Symbol,nq}")]
+    public readonly struct Joule : IUnit, IPrefixable, IReplicable<Joule>, IComparable, IComparable<Joule>,
+        IEquatable<Joule>
     {
-        //public readonly double Value;
+        public string Symbol => "J";
+        public Prefix Prefix => Prefix.None;
+        public double Value { get; }
 
         public Joule(double value)
         {
-            this.Value = value;
+            Value = value;
         }
-        public string Symbol => "J";
 
-        public double Value { get; }
+        #region +/-
 
-        public static implicit operator ProductOf<Kilogram, QuotientOf<SquareOf<Metre>, SquareOf<Second>>>(Joule source)
+        public static Joule operator +(Joule left, Joule right)
         {
-            return new();
+            return new(left.Value + right.Value);
         }
 
-        #region Casting
-        public static implicit operator Joule(ProductOf<Kilogram, QuotientOf<SquareOf<Metre>, SquareOf<Second>>> source)
+        public static Joule operator -(Joule left, Joule right)
         {
-            return new();
+            return new(left.Value - right.Value);
         }
+
         #endregion
 
+        #region */÷
+
+        public static Joule operator *(Joule unit, double multiplier)
+        {
+            return new Joule(unit.Value * multiplier);
+        }
+
+        public static Joule operator *(double multiplier, Joule unit)
+        {
+            return new Joule(unit.Value * multiplier);
+        }
+
+        public static Joule operator /(Joule dividend, double divisor)
+        {
+            return new Joule(dividend.Value / divisor);
+        }
+
+        public static double operator /(Joule dividend, Joule divisor)
+        {
+            return dividend.Value / divisor.Value;
+        }
+
+        #endregion */÷
+
+        #region J² = J·J
+
+        public static SquareOf<Joule> operator *(Joule left, Joule right)
+        {
+            return new(left.Value * right.Value);
+        }
+
+        #endregion
+
+        #region J = J² / J
+
+        public static Joule operator /(SquareOf<Joule> left, Joule right)
+        {
+            return new(left.Value / right.Value);
+        }
+
+        #endregion
 
         #region W = J/s
         public static Watt operator /(Joule joule, Second sec)
@@ -41,31 +82,93 @@ namespace UnitSystems.SI
         #endregion
 
         #region W = J/A
-        public static Weber operator /(Joule left, Ampere right)
+        public static Weber operator /(Joule joule, Ampere ampere)
         {
-            return new(left.Value / right.Value);
+            return new(joule.Value / ampere.Value);
         }
         #endregion
 
-        #region +/-
-        public static Joule operator +(Joule joule1, Joule joule2)
-        {
-            return new(joule1.Value + joule2.Value);
-        }
-        public static Joule operator -(Joule joule1, Joule joule2)
-        {
-            return new(joule1.Value - joule2.Value);
-        }
-        #endregion
+
+        #region Casting/Conversion
 
         public static implicit operator Joule(double value)
         {
             return new(value);
         }
 
-        public bool Equals(Hertz other)
+        #endregion
+
+        #region IReplicable implementation
+
+        public Joule ReplicateFrom(double value)
         {
-            return this.Value.Equals(other.Value);
+            return new Joule(value);
         }
+
+        #endregion
+
+        #region IEquatable implementation
+
+        public bool Equals(Joule other)
+        {
+            return Value.Equals(other.Value);
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is Joule other && Equals(other);
+        }
+
+        public override int GetHashCode()
+        {
+            return HashCode.Combine(Value, Prefix, Symbol);
+        }
+
+        #endregion
+
+        #region IComparable implementation
+
+        public int CompareTo(Joule other)
+        {
+            return Value.CompareTo(other.Value);
+        }
+
+        public int CompareTo(object obj)
+        {
+            return Value.CompareTo(obj);
+        }
+
+        public static bool operator ==(Joule left, Joule right)
+        {
+            return left.Equals(right);
+        }
+
+        public static bool operator !=(Joule left, Joule right)
+        {
+            return !left.Equals(right);
+        }
+
+        public static bool operator <(Joule left, Joule right)
+        {
+            return left.CompareTo(right) < 0;
+        }
+
+        public static bool operator <=(Joule left, Joule right)
+        {
+            return left.CompareTo(right) <= 0;
+        }
+
+        public static bool operator >(Joule left, Joule right)
+        {
+            return left.CompareTo(right) > 0;
+        }
+
+        public static bool operator >=(Joule left, Joule right)
+        {
+            return left.CompareTo(right) >= 0;
+        }
+
+        #endregion
     }
+
 }

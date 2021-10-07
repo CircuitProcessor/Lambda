@@ -2,7 +2,7 @@
 {
     using System.Collections.Generic;
 
-    internal static class Prefixes
+    public static class Prefixes
     {
         private static readonly double[] Exponents =
         {
