@@ -39,7 +39,6 @@ namespace UnitSystems
             Ohm Rz = V / I;   // 5 Ω
             Ampere Iz = V / R;  // 2 A
 
-            Metre m = 1;
             Newton N = 1;
             Coulomb C = 1;
             Joule J = 1;
@@ -55,8 +54,18 @@ namespace UnitSystems
             // W = (A^2)*R
             Watt watt = (I * I) * R;
 
-            // Square meter divided by meter is.. meter!
+
+            Metre m = 1;
+            // Metre times Metre is Metre Squared: m · m = m²
+            SquareOf<Metre> metreSquared = m * m;
+
+            // Square metre divided by metre is.. metre!
             Metre metre = (m * m) / m;
+
+
+            //Nested resolution
+            // Wb = J/A | J = N∙m | A = V/R
+            Weber weber = (N * m) / (V / R);
 
             // For the series circuit with given parameters:
             Ohm R1 = 1000;
@@ -87,14 +96,7 @@ namespace UnitSystems
             bool powerSuppliedEqualsDissipated = Pe == P1 + P2 + P3; // true: 216 mW == 36 mW + 108 mW + 72 mW
 
 
-            Ampere amp = 1;
-            Weber Wb = 1;
-            Kilogram kg = 1;
-            Second s = 1;
 
-            //Nested resolution
-            // Wb = J/A | J = N∙m | A = V/R
-            Weber weber = (N * m) / (V / R);
 
             Console.OutputEncoding = Encoding.UTF8;
             Console.WriteLine("{0}·{1}·{2}");
