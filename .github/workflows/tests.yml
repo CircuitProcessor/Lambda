@@ -1,0 +1,14 @@
+name: Tests
+
+on:
+  workflow_dispatch:
+jobs:
+  my-job:
+    name: My Job
+    runs-on: ubuntu-latest
+    steps:
+    - name: Secret
+      env:
+        SUPER_SECRET: ${{ secrets.NUGETORG_KEY }}
+      run:
+        echo "$SUPER_SECRET"
