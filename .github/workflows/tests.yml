@@ -8,7 +8,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - name: Secret
-    - shell: bash
       env:
         SUPER_SECRET: ${{ secrets.NUGETORG_KEY }}
       run: |
