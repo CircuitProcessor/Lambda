@@ -45,7 +45,7 @@ namespace UnitSystems.Samples.Tests
             Volt V = 20;
             Ohm R = 10;
 
-            // Nested-multiple implicit resolution
+            // Nested multiple implicit unit resolution
             // Wb = J/A | J = N∙m | A = V/R
             Weber weber = (N * m) / (V / R);
         }
