@@ -7,11 +7,8 @@ namespace UnitSystems.Complex
         where T1 : struct, IUnit, IReplicable<T1>
         where T2 : struct, IUnit, IReplicable<T2>
     {
-        public string Symbol => $"{_unit1.Symbol}·{_unit2.Symbol}";
+        public string Symbol => $"{default(T1).Symbol}·{default(T2).Symbol}";
         public double Value { get; }
-
-        private readonly T1 _unit1;
-        private readonly T2 _unit2;
 
         public ProductOf(T1 unit1, T2 unit2)
             : this(unit1.Value * unit2.Value)
@@ -20,8 +17,6 @@ namespace UnitSystems.Complex
 
         public ProductOf(double value)
         {
-            _unit1 = default;
-            _unit2 = default;
             Value = value;
         }
 
