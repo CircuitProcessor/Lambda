@@ -1,0 +1,32 @@
+name: .NET
+
+on:
+  push:
+    branches:
+    - develop
+    - feature/*
+  pull_request:
+    branches:
+    - develop
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 5.0.x
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore --configuration Release
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
+    - name: Nuget Pack
+      run: dotnet pack --no-build
+    - name: Nuget Push
+      run: dotnet nuget push UnitSystems.1.0.0-rc.nupkg --api-key ${{secrets.NUGETORG_KEY}} --source https://api.nuget.org/v3/index.json
