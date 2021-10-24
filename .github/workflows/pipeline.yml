@@ -15,6 +15,9 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    - name: Setup Env variables
+      env:
+        SUPER_SECRET: ${{ secrets.NUGETORG_KEY }}
     - uses: actions/checkout@v2
     - name: Setup .NET
       uses: actions/setup-dotnet@v1
@@ -29,4 +32,4 @@ jobs:
     - name: Nuget Pack
       run: dotnet pack --no-build --configuration Release
     - name: Nuget Push
-      run: dotnet nuget push UnitSystems.1.0.0-rc.nupkg --api-key ${secrets.NUGETORG_KEY} --source https://api.nuget.org/v3/index.json
+      run: dotnet nuget push UnitSystems.1.0.0-rc.nupkg --api-key "$env:SUPER_SECRET" --source https://api.nuget.org/v3/index.json
