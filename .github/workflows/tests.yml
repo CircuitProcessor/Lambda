@@ -9,6 +9,6 @@ jobs:
     steps:
     - name: Secret
       env:
-        SUPER_SECRET: ${{ secrets.NUGETORG_KEY }}
+        SUPER_SECRET: ${{ secrets.NUGET_KEY }}
       run: |
         echo "Sekret: $SUPER_SECRET"
