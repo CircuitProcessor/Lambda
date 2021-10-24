@@ -2,6 +2,11 @@
 
   <PropertyGroup>
     <TargetFramework>net5.0</TargetFramework>
+    <Authors>Michal Madrzyk</Authors>
+    <Company />
+    <Product />
+    <Description>Lightweight library providing strongly typed units of measure support.</Description>
+    <Version>1.0.0-rc</Version>
   </PropertyGroup>
 
 </Project>
