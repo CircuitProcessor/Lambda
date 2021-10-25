@@ -1,14 +1,9 @@
-name: .NET
+name: .NET Release Pipeline
 
 on:
   push:
     branches:
-    - develop
-    - feature/*
-  pull_request:
-    branches:
-    - develop
-  workflow_dispatch:
+    - master
 
 jobs:
   build:
@@ -30,5 +25,5 @@ jobs:
       run: dotnet pack --no-build --configuration Release
     - name: Nuget Push
       env:
-        SUPER_SECRET: ${{secrets.NUGET_KEY}}
-      run: dotnet nuget push "/home/runner/work/UnitSystems/UnitSystems/UnitSystems/bin/Release/UnitSystems.1.0.0-rc.nupkg" --api-key "$SUPER_SECRET" --source https://api.nuget.org/v3/index.json
+        AUTH_KEY: ${{secrets.NUGET_KEY}}
+      run: dotnet nuget push "./UnitSystems/bin/Release/UnitSystems.*.nupkg" --api-key "$AUTH_KEY" --source https://api.nuget.org/v3/index.json
