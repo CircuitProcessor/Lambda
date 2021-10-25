@@ -1,14 +1,9 @@
-name: .NET
+name: .NET Nuget Release
 
 on:
   push:
     branches:
-    - develop
-    - feature/*
-  pull_request:
-    branches:
-    - develop
-  workflow_dispatch:
+    - master
 
 jobs:
   build:
@@ -27,6 +22,8 @@ jobs:
     - name: Test
       run: dotnet test --no-build --verbosity normal --configuration Release
     - name: Nuget Pack
-      run: dotnet pack --no-build
+      run: dotnet pack --no-build --configuration Release
     - name: Nuget Push
-      run: dotnet nuget push UnitSystems.1.0.0-rc.nupkg --api-key ${{secrets.NUGETORG_KEY}} --source https://api.nuget.org/v3/index.json
+      env:
+        AUTH_KEY: ${{secrets.NUGET_KEY}}
+      run: dotnet nuget push "./bin/Release/UnitSystems.*.nupkg" --api-key "$AUTH_KEY" --source https://api.nuget.org/v3/index.json
