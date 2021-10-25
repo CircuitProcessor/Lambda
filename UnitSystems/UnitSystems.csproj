@@ -5,8 +5,21 @@
     <Authors>Michal Madrzyk</Authors>
     <Company />
     <Product />
-    <Description>Lightweight library providing strongly typed units of measure support.</Description>
-    <Version>1.0.0-rc</Version>
+    <Description>Lightweight library providing strongly typed support for units of measure in various measuring systems.</Description>
+    <Version>0.0.1-rc</Version>
+    <Copyright>MIT</Copyright>
+    <RepositoryUrl>https://github.com/michal-mad/UnitSystems</RepositoryUrl>
+    <PackageTags>Units, Units of measure, SI, IM</PackageTags>
+    <PackageIcon>lib-icon.png</PackageIcon>
+    <PackageIconUrl />
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Include="..\docs\icons\lib-icon.png">
+      <Pack>True</Pack>
+      <PackagePath></PackagePath>
+    </None>
+  </ItemGroup>
 
 </Project>
