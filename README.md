@@ -40,11 +40,11 @@ Volt diff = volt1 - volt2;  // diff = 0 V
 Conversion in magnitude:
 
 ```C#
-Gram g = 1000;                // 1000 g
+Gram g = 1000;                  // 1000 g
 Kilogram kg = (Kilogram)g;      // 1000 g = 1 kg
 
 Metre m = 1;                    // 1 m
-Millimetre mm = (Millimetre)m;    // 1 m = 1000 mm
+Millimetre mm = (Millimetre)m;  // 1 m = 1000 mm
 ```
 
 Conversion in representation:
@@ -116,3 +116,7 @@ Volt volt = i * r;      // volt = 40 V
 Ohm ohm = v / i;        // ohm = 5 Ω
 Ampere ampere = v / r;  // ampere = 2 A
 ```
+
+## Remarks
+
+Lib icon made by Freepik from www.flaticon.com
