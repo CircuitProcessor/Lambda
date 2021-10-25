@@ -8,15 +8,15 @@
     <Description>Lightweight library providing strongly typed support for units of measure in various measuring systems.</Description>
     <Version>0.0.1-rc</Version>
     <Copyright>MIT</Copyright>
-    <PackageLicenseFile>LICENSE.md</PackageLicenseFile>
     <RepositoryUrl>https://github.com/michal-mad/UnitSystems</RepositoryUrl>
     <PackageTags>Units, Units of measure, SI, IM</PackageTags>
     <PackageIcon>lib-icon.png</PackageIcon>
     <PackageIconUrl />
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\lib-icon.png">
+    <None Include="..\docs\icons\lib-icon.png">
       <Pack>True</Pack>
       <PackagePath></PackagePath>
     </None>
