@@ -1,4 +1,4 @@
-name: .NET Nuget Release
+name: .NET Release Pipeline
 
 on:
   push:
